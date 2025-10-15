@@ -14,85 +14,82 @@
     --card:#ffffff;
     --text:#1b1e28;
     --muted:#657080;
-    --brand:#2b6cff;
-    --accent:#12b886;
+    --brand:#007BFF;      /* ヘッダー青 */
     --danger:#e03131;
-    --shadow: 0 8px 24px rgba(16,24,40,.06);
+    --shadow:0 6px 20px rgba(0,0,0,.08);
     --radius:16px;
   }
-  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:"Noto Sans JP", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:"Noto Sans JP",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji";}
   a{color:var(--brand);text-decoration:none}
   a:hover{text-decoration:underline}
+
+  header {
+    background:var(--brand);
+    color:#fff;
+    padding:20px 0;
+    text-align:center;
+    font-size:1.6em;
+    font-weight:900;
+    letter-spacing:.04em;
+    box-shadow:0 2px 6px rgba(0,0,0,.2);
+  }
   .container{max-width:1000px;margin:0 auto;padding:24px 20px 80px}
-  header.sticky{
-    position:sticky;top:0;z-index:20;
-    background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(8px);
-    border-bottom:1px solid #eceff4;
-  }
-  .hero{
-    display:flex;align-items:center;justify-content:space-between;
-    gap:16px; padding:18px 20px;
-  }
-  .hero h1{
-    font-size:22px;letter-spacing:.02em;margin:0;font-weight:900;color:#0f172a;
-  }
-  .hero .badge{font-size:12px;background:var(--brand);color:#fff;border-radius:999px;padding:6px 12px;font-weight:700;}
-  .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;margin:18px 0;}
-  h2{font-size:20px;margin:0 0 14px;border-left:6px solid var(--brand);padding-left:12px;line-height:1.4;}
-  h3{font-size:16px;margin:18px 0 8px}
+
+  .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;margin:24px 0;}
+  h2{margin:0 0 14px;border-left:6px solid var(--brand);padding-left:10px;font-size:22px;font-weight:800;}
+  h3{margin:16px 0 8px;font-size:16px}
   p{line-height:1.9;margin:8px 0}
-  ul,ol{margin:8px 0 8px 1.2em}
+  ul,ol{margin:8px 0 8px 1.4em}
   .note{color:var(--muted)}
   .warn{color:var(--danger);font-weight:700}
   .red{color:var(--danger)}
+  .space{height:80px;visibility:hidden;}  /* セクション間の見えない余白（以前と同じ体感に） */
 
   /* 目次 */
-  #toc h2{margin-bottom:10px}
-  .toc-grid{
+  #toc .toc-grid{
     display:grid;gap:10px;
     grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
   }
   .toc-item{
     display:flex;flex-direction:column;gap:2px;
-    border:1px solid #e6ebf2;border-radius:12px;background:#fff;padding:12px 14px;
+    background:#fff;border:1px solid #e5e9f2;border-radius:12px;padding:10px 14px;
   }
   .toc-step{font-size:12px;color:#64748b;font-weight:700}
   .toc-title{font-size:15px;color:#0f172a;font-weight:800}
 
-  /* ステップ */
-  .step-title{font-size:24px;font-weight:900;letter-spacing:.01em;margin-bottom:10px}
+  /* ステップ見出し（矢印が逆向きだった時と同じテイストに戻す） */
   .step-section{scroll-margin-top:80px}
+  .step-title{
+    font-size:26px;         /* 大きめ */
+    color:#e67e22;          /* 濃いオレンジ */
+    font-weight:900;
+    margin-bottom:10px;
+  }
+
+  /* 画像と矢印 */
   .shot-list{display:flex;flex-direction:column;gap:14px;margin-top:14px}
   .shot{margin:0}
   .shot img{
-    width:100%;height:auto;border-radius:12px;border:1px solid #e5e9f2;background:#fff;
-    display:block;
+    width:100%;height:auto;border-radius:12px;border:1px solid #e5e9f2;background:#fff;display:block;
   }
-  /* S__ で始まる画像は 50% */
+  /* S__で始まる画像は50%表示（PC時）。スマホは100%へ切替 */
   .shot img[src*="S__"]{width:50%}
-
   .arrow-down{
     align-self:center;
-    font-size:28px;line-height:1;color:#0ea5e9; /* 強めに主張するブルー */
+    font-size:32px;line-height:1;color:#0ea5e9;
     filter:drop-shadow(0 2px 4px rgba(14,165,233,.25));
   }
+
   .back-links{margin-top:10px}
   .back-links a{font-size:13px}
 
-  /* レスポンシブ微調整 */
   @media (max-width:560px){
-    .hero h1{font-size:18px}
     .shot img[src*="S__"]{width:100%}
   }
 </style>
 </head>
 <body>
-  <header class="sticky">
-    <div class="hero container">
-      <h1>LinksMate 申込み方法</h1>
-      <span class="badge">完全手順</span>
-    </div>
-  </header>
+  <header>LinksMate 申込み方法</header>
 
   <main class="container">
     
@@ -144,7 +141,7 @@
         
           <a class="toc-item" href="#step4">
             <span class="toc-step">Step 4</span>
-            <span class="toc-title">個人情報・クレジットカード入力</span>
+            <span class="toc-title">個人情報・クレジットカード情報を入力</span>
           </a>
         
           <a class="toc-item" href="#step5">
@@ -159,7 +156,7 @@
         
           <a class="toc-item" href="#step7">
             <span class="toc-step">Step 7</span>
-            <span class="toc-title">「重要なお知らせ」から申し込み完了へ（3Dセキュア認証）</span>
+            <span class="toc-title">「重要なお知らせ」から申し込み完了へ（クレジットカード認証）</span>
           </a>
         
           <a class="toc-item" href="#step8">
@@ -220,7 +217,7 @@
       <h2 class="step-title">Step 1：リンクスメイトの公式サイトにアクセス</h2>
       <div class="step-body">
         
-        <p>リンクスメイトのHP（<a href="https://linksmate.jp" target="_blank" rel="noopener">https://linksmate.jp/</a>）にアクセスし、「お申し込みはこちら」ボタンをクリックする。</p>
+        <p>リンクスメイトのHP（<a href="https://linksmate.jp" target="_blank" rel="noopener">https://linksmate.jp/</a>）にアクセスし、<strong>「お申し込みはこちら」</strong>をクリックする。</p>
       
         
           <div class="shot-list">
@@ -237,17 +234,30 @@
         </div>
       </div>
     </section>
+    <div class="space"></div>
   
 
     <section id="step2" class="card step-section">
       <h2 class="step-title">Step 2：内容を選択し、次へ進む</h2>
       <div class="step-body">
-        <p>表示された画面で、以下のように内容を選択し「次へ進む」をクリックする。</p>
+        
+        <p>表示された画面で、画像のように内容を選択して<strong>「次へ進む」</strong>をクリックする。</p>
+      
         
           <div class="shot-list">
             
               <figure class="shot">
                 <img src="images/CleanShot 2025-10-15 at 13.08.38.png" alt="Step 2：内容を選択し、次へ進む - CleanShot 2025-10-15 at 13.08.38.png">
+              </figure>
+              <div class="arrow-down" aria-hidden="true">▼</div>
+            
+              <figure class="shot">
+                <img src="images/CleanShot 2025-10-15 at 13.13.00.png" alt="Step 2：内容を選択し、次へ進む - CleanShot 2025-10-15 at 13.13.00.png">
+              </figure>
+              <div class="arrow-down" aria-hidden="true">▼</div>
+            
+              <figure class="shot">
+                <img src="images/CleanShot 2025-10-15 at 13.17.59.png" alt="Step 2：内容を選択し、次へ進む - CleanShot 2025-10-15 at 13.17.59.png">
               </figure>
               
             
@@ -258,12 +268,15 @@
         </div>
       </div>
     </section>
+    <div class="space"></div>
   
 
     <section id="step3" class="card step-section">
       <h2 class="step-title">Step 3：メールアドレス・パスワード入力と本人確認</h2>
       <div class="step-body">
-        <p>メールアドレス、パスワードの入力と本人確認を行う。</p>
+        
+        <p>メールアドレス、パスワードを入力し、画面の案内に従って<strong>本人確認</strong>を行う。</p>
+      
         
           <div class="shot-list">
             
@@ -279,26 +292,27 @@
         </div>
       </div>
     </section>
+    <div class="space"></div>
   
 
     <section id="step4" class="card step-section">
-      <h2 class="step-title">Step 4：個人情報・クレジットカード入力</h2>
+      <h2 class="step-title">Step 4：個人情報・クレジットカード情報を入力</h2>
       <div class="step-body">
         
         <p>個人情報、クレジットカード情報を入力する。</p>
-        <p class="warn">※クレジットカードの有効性の確認は時間がかかる場合あり。</p>
-        <p>カード確認が <strong>OK</strong> になったら次へ進む。</p>
+        <p class="warn">※クレジットカードの有効性の確認は時間がかかる場合がある。</p>
+        <p>クレジットカード確認が <strong>OK</strong> になったら次へ進む。</p>
       
         
           <div class="shot-list">
             
               <figure class="shot">
-                <img src="images/CleanShot 2025-10-15 at 13.53.30.png" alt="Step 4：個人情報・クレジットカード入力 - CleanShot 2025-10-15 at 13.53.30.png">
+                <img src="images/CleanShot 2025-10-15 at 13.53.30.png" alt="Step 4：個人情報・クレジットカード情報を入力 - CleanShot 2025-10-15 at 13.53.30.png">
               </figure>
               <div class="arrow-down" aria-hidden="true">▼</div>
             
               <figure class="shot">
-                <img src="images/CleanShot 2025-10-15 at 14.08.12.png" alt="Step 4：個人情報・クレジットカード入力 - CleanShot 2025-10-15 at 14.08.12.png">
+                <img src="images/CleanShot 2025-10-15 at 14.08.12.png" alt="Step 4：個人情報・クレジットカード情報を入力 - CleanShot 2025-10-15 at 14.08.12.png">
               </figure>
               
             
@@ -309,12 +323,15 @@
         </div>
       </div>
     </section>
+    <div class="space"></div>
   
 
     <section id="step5" class="card step-section">
       <h2 class="step-title">Step 5：入力内容の確認・申し込み完了</h2>
       <div class="step-body">
-        <p>入力内容に間違いがないか確認し、申し込みを完了させる。</p>
+        
+        <p>入力内容に誤りがないか確認し、<strong>申し込みを完了</strong>させる。</p>
+      
         
           <div class="shot-list">
             
@@ -340,14 +357,15 @@
         </div>
       </div>
     </section>
+    <div class="space"></div>
   
 
     <section id="step6" class="card step-section">
       <h2 class="step-title">Step 6：TOPページからマイページにログイン</h2>
       <div class="step-body">
         
-        <p>リンクスメイト TOP から「マイページ」にログインする。</p>
-        <p class="note">※登録メールアドレス宛に認証コードが届くので入力。</p>
+        <p>リンクスメイトのTOPページから<strong>マイページ</strong>にログインする。</p>
+        <p class="note">※登録したメールアドレス宛に認証が届くので、コードを入力して進む。</p>
       
         
           <div class="shot-list">
@@ -374,26 +392,27 @@
         </div>
       </div>
     </section>
+    <div class="space"></div>
   
 
     <section id="step7" class="card step-section">
-      <h2 class="step-title">Step 7：「重要なお知らせ」から申し込み完了へ（3Dセキュア認証）</h2>
+      <h2 class="step-title">Step 7：「重要なお知らせ」から申し込み完了へ（クレジットカード認証）</h2>
       <div class="step-body">
         
-        <p>「重要なお知らせ」に表示される<strong>「申し込み完了」</strong>ボタンをクリックし、クレジットカードの3Dセキュア認証を行う。</p>
-        <p class="note">※このあたりの動作が重たい時があるので、繰り返しボタンをクリックしないよう注意。</p>
-        <p class="note">※3Dセキュアの認証コードが必要な場合は、作業用グループLINEに届く認証コードを確認して入力。</p>
+        <p>マイページの<strong>「重要なお知らせ」</strong>に表示されている<strong>「申し込み完了」</strong>ボタンをクリックし、クレジットカードの<strong>3Dセキュア</strong>認証を行う。</p>
+        <p class="note">※このあたりの動作が重たい時があるため、繰り返しボタンをクリックしないよう注意。</p>
+        <p class="note">※3Dセキュアの認証が必要な場合は、作業用グループLINEに届く認証コードを確認して入力する。</p>
       
         
           <div class="shot-list">
             
               <figure class="shot">
-                <img src="images/CleanShot 2025-10-15 at 14.24.03.png" alt="Step 7：「重要なお知らせ」から申し込み完了へ（3Dセキュア認証） - CleanShot 2025-10-15 at 14.24.03.png">
+                <img src="images/CleanShot 2025-10-15 at 14.24.03.png" alt="Step 7：「重要なお知らせ」から申し込み完了へ（クレジットカード認証） - CleanShot 2025-10-15 at 14.24.03.png">
               </figure>
               <div class="arrow-down" aria-hidden="true">▼</div>
             
               <figure class="shot">
-                <img src="images/CleanShot 2025-10-15 at 14.24.59.png" alt="Step 7：「重要なお知らせ」から申し込み完了へ（3Dセキュア認証） - CleanShot 2025-10-15 at 14.24.59.png">
+                <img src="images/CleanShot 2025-10-15 at 14.24.59.png" alt="Step 7：「重要なお知らせ」から申し込み完了へ（クレジットカード認証） - CleanShot 2025-10-15 at 14.24.59.png">
               </figure>
               
             
@@ -404,12 +423,15 @@
         </div>
       </div>
     </section>
+    <div class="space"></div>
   
 
     <section id="step8" class="card step-section">
       <h2 class="step-title">Step 8：「重要なお知らせ」から EID の提出に進む</h2>
       <div class="step-body">
-        <p>マイページ「重要なお知らせ」に表示される <strong>「EIDの提出」</strong> へ進む。</p>
+        
+        <p>マイページの<strong>「重要なお知らせ」</strong>から<strong>EIDの提出</strong>に進む。</p>
+      
         
           <div class="shot-list">
             
@@ -430,12 +452,15 @@
         </div>
       </div>
     </section>
+    <div class="space"></div>
   
 
     <section id="step9" class="card step-section">
       <h2 class="step-title">Step 9：EID を入力し、登録を完了させる</h2>
       <div class="step-body">
-        <p>端末の EID（32桁）を入力し、確認画面 → 提出で登録を完了させる。</p>
+        
+        <p>端末の<strong>EID（32桁）</strong>を入力し、確認画面→提出で<strong>登録を完了</strong>させる。</p>
+      
         
           <div class="shot-list">
             
@@ -461,13 +486,14 @@
         </div>
       </div>
     </section>
+    <div class="space"></div>
   
 
     <section id="step10" class="card step-section">
       <h2 class="step-title">Step 10：eSIM設定通知からモバイル通信プランのインストールへ進む</h2>
       <div class="step-body">
         
-        <p>入力した EID の端末に通知が届くのでタップし、モバイル通信プランのインストールへ進む。</p>
+        <p>入力したEIDの端末に通知が届くのでタップし、<strong>モバイル通信プランのインストール</strong>へ進む。</p>
         <p class="warn">※Wi-Fi に繋いでから作業する。</p>
       
         
@@ -495,12 +521,15 @@
         </div>
       </div>
     </section>
+    <div class="space"></div>
   
 
     <section id="step11" class="card step-section">
       <h2 class="step-title">Step 11：eSIM のアクティベートを完了させる</h2>
       <div class="step-body">
-        <p>案内に従ってアクティベートを進め、完了させる。</p>
+        
+        <p>案内に従って<strong>eSIMのアクティベート</strong>を進め、完了させる。</p>
+      
         
           <div class="shot-list">
             
@@ -526,14 +555,15 @@
         </div>
       </div>
     </section>
+    <div class="space"></div>
   
 
     <section id="step12" class="card step-section">
       <h2 class="step-title">Step 12：リンクスメイトのプロファイルをダウンロード・インストール</h2>
       <div class="step-body">
         
-        <p>Safari で「リンクスメイト プロファイル」等で検索 → 公式の「iPhone利用について」から <strong>APN構成プロファイル</strong> をダウンロードし、設定アプリからインストールする。</p>
-        <p class="warn">※インストール完了後、Wi-Fi をオフにする。</p>
+        <p>Safari で「リンクスメイト iPhone」等で検索し、公式の案内から<strong>APN構成プロファイル</strong>をダウンロード → 設定アプリでインストールする。</p>
+        <p class="warn">※インストール完了後は、<strong>Wi-Fi をオフ</strong>にする。</p>
       
         
           <div class="shot-list">
@@ -590,13 +620,14 @@
         </div>
       </div>
     </section>
+    <div class="space"></div>
   
 
     <section id="step13" class="card step-section">
       <h2 class="step-title">Step 13：eSIM の名称を変更</h2>
       <div class="step-body">
         
-        <p>設定アプリ → モバイル通信 → インストールした eSIM を選択し、複数の eSIM を区別できるよう名称を変更する。</p>
+        <p>設定アプリ → モバイル通信 → インストールした eSIM を選択し、複数の eSIM を区別できるよう<strong>名称を変更</strong>する。</p>
         <p><strong>例）</strong>グループ1親、グループ1子①、グループ2親、グループ2子① など</p>
       
         
@@ -624,15 +655,16 @@
         </div>
       </div>
     </section>
+    <div class="space"></div>
   
 
     <section id="step14" class="card step-section">
       <h2 class="step-title">Step 14：親②（データ専用SIM）の開通</h2>
       <div class="step-body">
         
-        <p>Step 1〜13 の手順をもう一度繰り返し、<strong>親②（データ専用SIM）</strong> を申し込み・開通する。</p>
+        <p><strong>Step 1〜13</strong> の手順をもう一度繰り返し、<strong>親②（データ専用SIM）</strong> を申し込み・開通する。</p>
         <p class="note">※すぐに申し込みすれば本人確認や一部手順は省略される場合がある。</p>
-        <p>申し込み後、<strong>LinksMate のマイページ</strong>にログインし、右上の<strong>グループ選択</strong>を「グループ2」に切り替える。その後、Step 7 以降の<strong>クレジットカード認証やEID登録</strong>へ進む（EIDは同一端末のものを使う）。</p>
+        <p>申し込み後、<strong>LinksMate のマイページ</strong>にログインし、右上の<strong>グループ選択</strong>を「グループ2」に切り替える。その後、<strong>Step 7 以降</strong>のクレジットカード認証や EID 登録に進む（<strong>EID は同一端末のもの</strong>を使う）。</p>
       
         
           <div class="shot-list">
@@ -649,13 +681,15 @@
         </div>
       </div>
     </section>
+    <div class="space"></div>
   
 
     <section id="step15" class="card step-section">
       <h2 class="step-title">Step 15：グループ1 と グループ2 に音声SIMを追加していく</h2>
       <div class="step-body">
         
-        <p>音声SIMを追加したいグループに切り替え、マイページ下部の「SIMカードの追加・削除」から <strong>新規SIMカードのお申し込み</strong> → 種別：<strong>音声通話+SMS+データ通信</strong>、方式：<strong>eSIM</strong> を選択して進める。</p>
+        <p>音声SIMを追加したいグループに切り替え、マイページ下部の<strong>「SIMカードの追加・削除」</strong>から <strong>新規SIMカードのお申し込み</strong>へ進む。</p>
+        <p>種別は <strong>音声通話+SMS+データ通信</strong>、方式は <strong>eSIM</strong> を選択して進める。</p>
       
         
           <div class="shot-list">
@@ -707,15 +741,16 @@
         </div>
       </div>
     </section>
+    <div class="space"></div>
   
 
     <section id="step16" class="card step-section">
       <h2 class="step-title">Step 16：本人確認を再度行い、申し込みを完了</h2>
       <div class="step-body">
         
-        <p>音声SIMの追加申込み時、本人確認（eKYC）を再度求められる。画面の指示に従い、<strong>マイナンバーカード</strong>などで認証 → 受付完了後に<strong>申し込み完了</strong>ボタンで確定。</p>
-        <p class="note">※本人確認の手順は親①を作成した時と多少異なる場合あり。</p>
-        <p>完了後、<strong>Step 8〜13</strong> の手順で開通し、続いて<strong>グループ2の子①</strong>も同手順で作成する。</p>
+        <p>音声SIMの申込み時に<strong>本人確認（eKYC）</strong>が求められる。画面の指示に従って実施し、受付後に<strong>申し込み完了</strong>ボタンで確定する。</p>
+        <p class="note">※本人確認の手順は親①作成時と一部異なる場合がある。</p>
+        <p>完了後、<strong>Step 8〜13</strong> の手順で開通し、続けて<strong>グループ2の子①</strong>も同手順で作成する。</p>
       
         
           <div class="shot-list">
@@ -747,16 +782,17 @@
         </div>
       </div>
     </section>
+    <div class="space"></div>
   
 
     <section id="step17" class="card step-section">
       <h2 class="step-title">Step 17：モッピー・ポケセンのアカウント作成後、使用済みの回線を削除</h2>
       <div class="step-body">
         
-        <p>モッピーやポケセンでアカウントを作成した後は、使用済みになった回線を削除する。</p>
+        <p>モッピーやポケセンでアカウントを作成後、使用済み回線を削除する。</p>
         <ol>
-          <li>LinksMate のマイページにログイン。</li>
-          <li>「ご利用中のSIMカード一覧」から、削除したい回線の右側にある<strong>「削除する」</strong>をクリック。</li>
+          <li>LinksMate のマイページにログインする。</li>
+          <li>「ご利用中のSIMカード一覧」から、削除したい回線の右側にある<strong>「削除する」</strong>をクリックする。</li>
           <li><strong class="warn">※親のデータ専用回線は絶対に削除しない。</strong></li>
           <li>マイページで回線削除が完了したら、iPhone の<strong>設定アプリ → モバイル通信</strong>に進み、対応する削除済み eSIM も削除しておく。</li>
           <li>その後、<strong>Step 15</strong> からの手順を繰り返して、次のアカウント作成を進める。</li>
@@ -777,6 +813,7 @@
         </div>
       </div>
     </section>
+    
   
   </main>
 </body>
