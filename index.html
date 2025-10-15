@@ -2,471 +2,782 @@
 <!doctype html>
 <html lang="ja">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>LinksMate 申込み方法</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --primary: #2563eb;
-    --accent: #10b981;
-    --danger: #ef4444;
-    --bg: #f8fafc;
-    --card: #ffffff;
-    --ink: #0f172a;
-    --border: #e2e8f0;
+  :root{
+    --bg:#f7f8fb;
+    --card:#ffffff;
+    --text:#1b1e28;
+    --muted:#657080;
+    --brand:#2b6cff;
+    --accent:#12b886;
+    --danger:#e03131;
+    --shadow: 0 8px 24px rgba(16,24,40,.06);
+    --radius:16px;
   }
-  body {
-    font-family: "Noto Sans JP", "Helvetica Neue", Arial, sans-serif;
-    background: var(--bg);
-    color: var(--ink);
-    margin: 0;
-    line-height: 1.7;
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:"Noto Sans JP", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";}
+  a{color:var(--brand);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .container{max-width:1000px;margin:0 auto;padding:24px 20px 80px}
+  header.sticky{
+    position:sticky;top:0;z-index:20;
+    background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(8px);
+    border-bottom:1px solid #eceff4;
   }
-  .wrap { max-width: 980px; margin: 0 auto; padding: 24px; }
-  .card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 24px;
-    margin: 40px 0;
-    box-shadow: 0 4px 16px rgba(0,0,0,.05);
+  .hero{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:16px; padding:18px 20px;
   }
-  h1 {
-    font-size: 30px;
-    margin-bottom: 0.3em;
+  .hero h1{
+    font-size:22px;letter-spacing:.02em;margin:0;font-weight:900;color:#0f172a;
   }
-  h2 {
-    font-size: 22px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  h2::before {
-    content: "";
-    display: inline-block;
-    width: 6px;
-    height: 26px;
-    background: var(--primary);
-    border-radius: 3px;
-  }
-  .important { color: var(--danger); font-weight: bold; }
-  .note {
-    background: #fff7ed;
-    border-left: 4px solid var(--accent);
-    padding: 10px 14px;
-    margin-top: 12px;
-    border-radius: 8px;
-  }
-  .toc {
-    display: grid;
-    gap: 14px;
-  }
-  .toc .group {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 14px;
-  }
-  .toc h3 { margin: 0 0 8px; }
-  .toc ul { list-style: none; padding: 0; margin: 0; }
-  .toc li { margin: 4px 0; }
-  .toc a { text-decoration: none; color: var(--primary); }
-  .toc a:hover { text-decoration: underline; }
+  .hero .badge{font-size:12px;background:var(--brand);color:#fff;border-radius:999px;padding:6px 12px;font-weight:700;}
+  .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;margin:18px 0;}
+  h2{font-size:20px;margin:0 0 14px;border-left:6px solid var(--brand);padding-left:12px;line-height:1.4;}
+  h3{font-size:16px;margin:18px 0 8px}
+  p{line-height:1.9;margin:8px 0}
+  ul,ol{margin:8px 0 8px 1.2em}
+  .note{color:var(--muted)}
+  .warn{color:var(--danger);font-weight:700}
+  .red{color:var(--danger)}
 
-  figure { margin: 16px 0; text-align: center; }
-  figure img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 12px;
-    border: 1px solid var(--border);
+  /* 目次 */
+  #toc h2{margin-bottom:10px}
+  .toc-grid{
+    display:grid;gap:10px;
+    grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
   }
+  .toc-item{
+    display:flex;flex-direction:column;gap:2px;
+    border:1px solid #e6ebf2;border-radius:12px;background:#fff;padding:12px 14px;
+  }
+  .toc-step{font-size:12px;color:#64748b;font-weight:700}
+  .toc-title{font-size:15px;color:#0f172a;font-weight:800}
 
-  /* S__画像は半分サイズ */
-  figure img[src*="S__"] {
-    width: 50%;
+  /* ステップ */
+  .step-title{font-size:24px;font-weight:900;letter-spacing:.01em;margin-bottom:10px}
+  .step-section{scroll-margin-top:80px}
+  .shot-list{display:flex;flex-direction:column;gap:14px;margin-top:14px}
+  .shot{margin:0}
+  .shot img{
+    width:100%;height:auto;border-radius:12px;border:1px solid #e5e9f2;background:#fff;
+    display:block;
   }
+  /* S__ で始まる画像は 50% */
+  .shot img[src*="S__"]{width:50%}
 
-  .arrow {
-    display: flex;
-    justify-content: center;
-    margin: 16px 0;
+  .arrow-down{
+    align-self:center;
+    font-size:28px;line-height:1;color:#0ea5e9; /* 強めに主張するブルー */
+    filter:drop-shadow(0 2px 4px rgba(14,165,233,.25));
   }
-  .arrow svg {
-    width: 44px;
-    height: 44px;
-    color: var(--primary);
-    opacity: 0.8;
-  }
+  .back-links{margin-top:10px}
+  .back-links a{font-size:13px}
 
-  .step-title {
-    font-size: 24px;
-    font-weight: bold;
-    color: var(--primary);
-    border-bottom: 2px solid var(--primary);
-    padding-bottom: 6px;
-    margin-bottom: 12px;
+  /* レスポンシブ微調整 */
+  @media (max-width:560px){
+    .hero h1{font-size:18px}
+    .shot img[src*="S__"]{width:100%}
   }
-
-  .divider {
-    display: flex;
-    justify-content: center;
-    margin: 50px 0;
-  }
-  .divider svg {
-    width: 40px;
-    height: 40px;
-    color: var(--accent);
-    opacity: 0.7;
-  }
-
-  .btn-top {
-    display: block;
-    margin: 30px auto 0;
-    text-align: center;
-    background: var(--primary);
-    color: #fff;
-    border-radius: 999px;
-    padding: 12px 24px;
-    width: 180px;
-    text-decoration: none;
-  }
-  .btn-top:hover { background: #1d4ed8; }
 </style>
 </head>
 <body>
-<div class="wrap">
-
-  <div class="card">
-    <h1>LinksMate 申込み方法</h1>
-  </div>
-
-  <div class="card">
-    <h2>概要</h2>
-    <ul>
-      <li>対象：iPhone（eSIM対応）</li>
-      <li>構成：親（データ専用 eSIM）×2 ＋ 音声SIM（各グループに追加）</li>
-      <li>本人確認：LIQUID eKYC（アプリ認証）</li>
-      <li class="important">※リンクスメイトの申し込み作業はPCで行ってください</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h2>目次</h2>
-    <div class="toc">
-      <div class="group">
-        <h3>申し込み〜親①</h3>
-        <ul>
-          <li><a href="#step1">Step 1：公式サイトにアクセス</a></li>
-          <li><a href="#step2">Step 2：内容を選択</a></li>
-          <li><a href="#step3">Step 3：本人確認</a></li>
-          <li><a href="#step4">Step 4：情報入力</a></li>
-          <li><a href="#step5">Step 5：申込完了</a></li>
-        </ul>
-      </div>
-      <div class="group">
-        <h3>マイページ・EID登録</h3>
-        <ul>
-          <li><a href="#step6">Step 6：ログイン</a></li>
-          <li><a href="#step7">Step 7：3Dセキュア認証</a></li>
-          <li><a href="#step8">Step 8：EID提出</a></li>
-          <li><a href="#step9">Step 9：EID登録完了</a></li>
-          <li><a href="#step10">Step 10：eSIM設定通知</a></li>
-          <li><a href="#step11">Step 11：eSIMアクティベート</a></li>
-          <li><a href="#step12">Step 12：プロファイルインストール</a></li>
-          <li><a href="#step13">Step 13：名称変更</a></li>
-        </ul>
-      </div>
-      <div class="group">
-        <h3>音声SIMの申し込み</h3>
-        <ul>
-          <li><a href="#step14">Step 14：親②作成</a></li>
-          <li><a href="#step15">Step 15：音声SIM追加</a></li>
-          <li><a href="#step16">Step 16：本人確認・開通</a></li>
-          <li><a href="#step17">Step 17：使用済み回線削除</a></li>
-        </ul>
-      </div>
+  <header class="sticky">
+    <div class="hero container">
+      <h1>LinksMate 申込み方法</h1>
+      <span class="badge">完全手順</span>
     </div>
-  </div>
+  </header>
 
-  <!-- 以下：ステップ1〜17 -->
-  
-    <section class="card" id="step1">
-      <div class="step-title">Step 1：リンクスメイト公式サイトにアクセス</div>
-      <p>公式HPにアクセスし「お申し込みはこちら」から開始。</p>
-      
-        <figure><img src="images/CleanShot 2025-10-15 at 13.07.03.png" alt="リンクスメイト公式サイトにアクセス"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-    </section>
-    <div class="divider"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-  
-    <section class="card" id="step2">
-      <div class="step-title">Step 2：内容を選択し次へ進む</div>
-      <p>プランを選択し「eSIM」を指定。</p>
-      
-        <figure><img src="images/CleanShot 2025-10-15 at 13.08.38.png" alt="内容を選択し次へ進む"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-        <figure><img src="images/CleanShot 2025-10-15 at 13.13.00.png" alt="内容を選択し次へ進む"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-        <figure><img src="images/CleanShot 2025-10-15 at 13.17.59.png" alt="内容を選択し次へ進む"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-    </section>
-    <div class="divider"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-  
-    <section class="card" id="step3">
-      <div class="step-title">Step 3：メールアドレス・パスワードの入力と本人確認</div>
-      <p>メールアドレスとパスワードを入力し、本人確認を行う。</p>
-      
-        <figure><img src="images/CleanShot 2025-10-15 at 13.19.10.png" alt="メールアドレス・パスワードの入力と本人確認"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-    </section>
-    <div class="divider"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-  
-    <section class="card" id="step4">
-      <div class="step-title">Step 4：個人情報とクレジットカード情報を入力</div>
-      <p>個人情報とクレジットカード情報を入力し、認証完了後に進む。</p>
-      
-        <figure><img src="images/CleanShot 2025-10-15 at 13.53.30.png" alt="個人情報とクレジットカード情報を入力"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-        <figure><img src="images/CleanShot 2025-10-15 at 14.08.12.png" alt="個人情報とクレジットカード情報を入力"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-    </section>
-    <div class="divider"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-  
-    <section class="card" id="step5">
-      <div class="step-title">Step 5：入力内容を確認し申し込み完了</div>
-      <p>入力内容を確認して申し込みを完了させる。</p>
-      
-        <figure><img src="images/CleanShot 2025-10-15 at 14.13.53.png" alt="入力内容を確認し申し込み完了"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-        <figure><img src="images/CleanShot 2025-10-15 at 14.16.40.png" alt="入力内容を確認し申し込み完了"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-        <figure><img src="images/CleanShot 2025-10-15 at 14.19.15.png" alt="入力内容を確認し申し込み完了"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-    </section>
-    <div class="divider"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-  
-    <section class="card" id="step6">
-      <div class="step-title">Step 6：マイページにログイン</div>
-      <p>TOPページからマイページにログイン。登録したメールに認証が届く。</p>
-      
-        <figure><img src="images/CleanShot 2025-10-15 at 14.19.47.png" alt="マイページにログイン"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-        <figure><img src="images/CleanShot 2025-10-15 at 14.20.41.png" alt="マイページにログイン"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-        <figure><img src="images/CleanShot 2025-10-15 at 14.21.08.png" alt="マイページにログイン"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-    </section>
-    <div class="divider"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-  
-    <section class="card" id="step7">
-      <div class="step-title">Step 7：「重要なお知らせ」からクレジット認証</div>
-      <p>「重要なお知らせ」内のボタンからクレジットカード認証を行う。</p>
-      
-        <figure><img src="images/CleanShot 2025-10-15 at 14.24.03.png" alt="「重要なお知らせ」からクレジット認証"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-        <figure><img src="images/CleanShot 2025-10-15 at 14.24.59.png" alt="「重要なお知らせ」からクレジット認証"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-    </section>
-    <div class="divider"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-  
-    <section class="card" id="step8">
-      <div class="step-title">Step 8：重要なお知らせから「EID」の提出</div>
-      <p>EID提出の案内をクリックして進む。</p>
-      
-        <figure><img src="images/CleanShot 2025-10-15 at 14.26.06.png" alt="重要なお知らせから「EID」の提出"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-        <figure><img src="images/CleanShot 2025-10-15 at 14.26.37.png" alt="重要なお知らせから「EID」の提出"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-    </section>
-    <div class="divider"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-  
-    <section class="card" id="step9">
-      <div class="step-title">Step 9：EIDを入力し登録を完了させる</div>
-      <p>EIDを入力して登録を完了する。</p>
-      
-        <figure><img src="images/CleanShot 2025-10-15 at 14.30.25.png" alt="EIDを入力し登録を完了させる"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-        <figure><img src="images/CleanShot 2025-10-15 at 14.32.48.png" alt="EIDを入力し登録を完了させる"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-        <figure><img src="images/CleanShot 2025-10-15 at 14.34.24.png" alt="EIDを入力し登録を完了させる"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-    </section>
-    <div class="divider"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-  
-    <section class="card" id="step10">
-      <div class="step-title">Step 10：eSIM設定通知からモバイル通信プランのインストールへ進む</div>
-      <p><span class="important">Wi-Fiに繋いでから作業する</span></p>
-      
-        <figure><img src="images/S__231104560.jpg" alt="eSIM設定通知からモバイル通信プランのインストールへ進む"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-        <figure><img src="images/S__231104569_0.jpg" alt="eSIM設定通知からモバイル通信プランのインストールへ進む"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-        <figure><img src="images/S__231104571_0.jpg" alt="eSIM設定通知からモバイル通信プランのインストールへ進む"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-    </section>
-    <div class="divider"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-  
-    <section class="card" id="step11">
-      <div class="step-title">Step 11：eSIMのアクティベートを完了させる</div>
-      <p>届いたeSIM通知を開きアクティベートを完了。</p>
-      
-        <figure><img src="images/S__231104572_0.jpg" alt="eSIMのアクティベートを完了させる"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-        <figure><img src="images/S__231104573_0.jpg" alt="eSIMのアクティベートを完了させる"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-        <figure><img src="images/S__231104574_0.jpg" alt="eSIMのアクティベートを完了させる"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-    </section>
-    <div class="divider"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-  
-    <section class="card" id="step12">
-      <div class="step-title">Step 12：リンクスメイトのプロファイルをダウンロードしインストール</div>
-      <p>インストール完了後、<span class="important">Wi-Fiをオフにする</span>。</p>
-      
-        <figure><img src="images/S__231104581_0.jpg" alt="リンクスメイトのプロファイルをダウンロードしインストール"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-        <figure><img src="images/S__231104583_0.jpg" alt="リンクスメイトのプロファイルをダウンロードしインストール"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-        <figure><img src="images/S__231104584_0.jpg" alt="リンクスメイトのプロファイルをダウンロードしインストール"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-        <figure><img src="images/S__231104585_0.jpg" alt="リンクスメイトのプロファイルをダウンロードしインストール"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-        <figure><img src="images/S__231104586_0.jpg" alt="リンクスメイトのプロファイルをダウンロードしインストール"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-        <figure><img src="images/S__231104588_0.jpg" alt="リンクスメイトのプロファイルをダウンロードしインストール"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-        <figure><img src="images/S__231104589_0.jpg" alt="リンクスメイトのプロファイルをダウンロードしインストール"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-        <figure><img src="images/S__231104590_0.jpg" alt="リンクスメイトのプロファイルをダウンロードしインストール"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-        <figure><img src="images/S__231104591_0.jpg" alt="リンクスメイトのプロファイルをダウンロードしインストール"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-    </section>
-    <div class="divider"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-  
-    <section class="card" id="step13">
-      <div class="step-title">Step 13：eSIMの名称を変更する</div>
-      <p>iPhone設定画面からeSIMの名称を変更する。</p>
-      
-        <figure><img src="images/S__231112714_0.jpg" alt="eSIMの名称を変更する"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-        <figure><img src="images/S__231112716_0.jpg" alt="eSIMの名称を変更する"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-        <figure><img src="images/S__231112717_0.jpg" alt="eSIMの名称を変更する"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-    </section>
-    <div class="divider"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-  
-    <section class="card" id="step14">
-      <div class="step-title">Step 14：親②を申し込み開通</div>
-      <p>ステップ1〜13の手順をもう一度繰り返して親②を申し込む。</p>
-      
-        <figure><img src="images/CleanShot 2025-10-15 at 15.15.09.png" alt="親②を申し込み開通"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-    </section>
-    <div class="divider"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-  
-    <section class="card" id="step15">
-      <div class="step-title">Step 15：グループ1とグループ2に音声SIMを追加</div>
-      <p>音声SIMをそれぞれのグループに追加。</p>
-      
-        <figure><img src="images/CleanShot 2025-10-15 at 16.13.09.png" alt="グループ1とグループ2に音声SIMを追加"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-        <figure><img src="images/CleanShot 2025-10-15 at 16.15.13.png" alt="グループ1とグループ2に音声SIMを追加"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-        <figure><img src="images/CleanShot 2025-10-15 at 16.16.46.png" alt="グループ1とグループ2に音声SIMを追加"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-        <figure><img src="images/CleanShot 2025-10-15 at 16.17.47.png" alt="グループ1とグループ2に音声SIMを追加"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-        <figure><img src="images/CleanShot 2025-10-15 at 16.19.10.png" alt="グループ1とグループ2に音声SIMを追加"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-        <figure><img src="images/CleanShot 2025-10-15 at 16.19.58.png" alt="グループ1とグループ2に音声SIMを追加"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-        <figure><img src="images/CleanShot 2025-10-15 at 16.21.37.png" alt="グループ1とグループ2に音声SIMを追加"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-        <figure><img src="images/CleanShot 2025-10-15 at 16.23.26.png" alt="グループ1とグループ2に音声SIMを追加"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-    </section>
-    <div class="divider"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-  
-    <section class="card" id="step16">
-      <div class="step-title">Step 16：本人確認を再度行い申し込みを完了</div>
-      <p>本人確認を再度行い、開通後は同手順で子①を作成。</p>
-      
-        <figure><img src="images/CleanShot 2025-10-15 at 16.23.59.png" alt="本人確認を再度行い申し込みを完了"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-        <figure><img src="images/CleanShot 2025-10-15 at 16.25.16.png" alt="本人確認を再度行い申し込みを完了"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-        <figure><img src="images/CleanShot 2025-10-15 at 16.43.52.png" alt="本人確認を再度行い申し込みを完了"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-        <figure><img src="images/CleanShot 2025-10-15 at 16.44.25.png" alt="本人確認を再度行い申し込みを完了"></figure>
-        <div class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-      
-    </section>
-    <div class="divider"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 10H4z"/></svg></div>
-  
-    <section class="card" id="step17">
-      <div class="step-title">Step 17：モッピー・ポケセンのアカウント作成後、使用済み回線を削除</div>
-      <p>マイページから削除後、iPhone設定→モバイル通信でも削除。<br><span class="important">※親のデータ専用回線は絶対に削除しない</span></p>
-      
-        <figure><img src="images/CleanShot 2025-10-15 at 21.08.22.png" alt="モッピー・ポケセンのアカウント作成後、使用済み回線を削除"></figure>
-        
-      
-    </section>
+  <main class="container">
     
+    <section id="overview" class="card">
+      <h2>概要</h2>
+      <p class="note red">※リンクスメイトの申し込みの作業は <strong>PC</strong> で行ってください。</p>
+
+      <h3>必要なもの</h3>
+      <ul>
+        <li>本人確認に使用するスマートフォン</li>
+        <li>本人確認書類いずれか1点
+          <ul>
+            <li>運転免許証（更新時に設定する2種類の暗証番号が必要）</li>
+            <li>マイナンバーカード</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3>手順概要</h3>
+      <ol>
+        <li>新規のデータ専用SIMを申し込む（親①）</li>
+        <li>①の開通後、同じ手順で再度データ専用SIMを申し込む（親②）</li>
+        <li>（この時点でグループ1・グループ2が作成される）</li>
+        <li>各グループに音声SIMを追加する（子①、子② など）</li>
+        <li>モッピー・ポケセンのアカウント作成後、子①・子②を順次解約する</li>
+        <li>以降、必要な数だけ 3〜5 の手順を繰り返す</li>
+      </ol>
+    </section>
+  
+    
+    <nav id="toc" class="card">
+      <h2>目次</h2>
+      <div class="toc-grid">
+        
+          <a class="toc-item" href="#step1">
+            <span class="toc-step">Step 1</span>
+            <span class="toc-title">リンクスメイトの公式サイトにアクセス</span>
+          </a>
+        
+          <a class="toc-item" href="#step2">
+            <span class="toc-step">Step 2</span>
+            <span class="toc-title">内容を選択し、次へ進む</span>
+          </a>
+        
+          <a class="toc-item" href="#step3">
+            <span class="toc-step">Step 3</span>
+            <span class="toc-title">メールアドレス・パスワード入力と本人確認</span>
+          </a>
+        
+          <a class="toc-item" href="#step4">
+            <span class="toc-step">Step 4</span>
+            <span class="toc-title">個人情報・クレジットカード入力</span>
+          </a>
+        
+          <a class="toc-item" href="#step5">
+            <span class="toc-step">Step 5</span>
+            <span class="toc-title">入力内容の確認・申し込み完了</span>
+          </a>
+        
+          <a class="toc-item" href="#step6">
+            <span class="toc-step">Step 6</span>
+            <span class="toc-title">TOPページからマイページにログイン</span>
+          </a>
+        
+          <a class="toc-item" href="#step7">
+            <span class="toc-step">Step 7</span>
+            <span class="toc-title">「重要なお知らせ」から申し込み完了へ（3Dセキュア認証）</span>
+          </a>
+        
+          <a class="toc-item" href="#step8">
+            <span class="toc-step">Step 8</span>
+            <span class="toc-title">「重要なお知らせ」から EID の提出に進む</span>
+          </a>
+        
+          <a class="toc-item" href="#step9">
+            <span class="toc-step">Step 9</span>
+            <span class="toc-title">EID を入力し、登録を完了させる</span>
+          </a>
+        
+          <a class="toc-item" href="#step10">
+            <span class="toc-step">Step 10</span>
+            <span class="toc-title">eSIM設定通知からモバイル通信プランのインストールへ進む</span>
+          </a>
+        
+          <a class="toc-item" href="#step11">
+            <span class="toc-step">Step 11</span>
+            <span class="toc-title">eSIM のアクティベートを完了させる</span>
+          </a>
+        
+          <a class="toc-item" href="#step12">
+            <span class="toc-step">Step 12</span>
+            <span class="toc-title">リンクスメイトのプロファイルをダウンロード・インストール</span>
+          </a>
+        
+          <a class="toc-item" href="#step13">
+            <span class="toc-step">Step 13</span>
+            <span class="toc-title">eSIM の名称を変更</span>
+          </a>
+        
+          <a class="toc-item" href="#step14">
+            <span class="toc-step">Step 14</span>
+            <span class="toc-title">親②（データ専用SIM）の開通</span>
+          </a>
+        
+          <a class="toc-item" href="#step15">
+            <span class="toc-step">Step 15</span>
+            <span class="toc-title">グループ1 と グループ2 に音声SIMを追加していく</span>
+          </a>
+        
+          <a class="toc-item" href="#step16">
+            <span class="toc-step">Step 16</span>
+            <span class="toc-title">本人確認を再度行い、申し込みを完了</span>
+          </a>
+        
+          <a class="toc-item" href="#step17">
+            <span class="toc-step">Step 17</span>
+            <span class="toc-title">モッピー・ポケセンのアカウント作成後、使用済みの回線を削除</span>
+          </a>
+        
+      </div>
+    </nav>
+  
+    
+    <section id="step1" class="card step-section">
+      <h2 class="step-title">Step 1：リンクスメイトの公式サイトにアクセス</h2>
+      <div class="step-body">
+        
+        <p>リンクスメイトのHP（<a href="https://linksmate.jp" target="_blank" rel="noopener">https://linksmate.jp/</a>）にアクセスし、「お申し込みはこちら」ボタンをクリックする。</p>
+      
+        
+          <div class="shot-list">
+            
+              <figure class="shot">
+                <img src="images/CleanShot 2025-10-15 at 13.07.03.png" alt="Step 1：リンクスメイトの公式サイトにアクセス - CleanShot 2025-10-15 at 13.07.03.png">
+              </figure>
+              
+            
+          </div>
+        
+        <div class="back-links">
+          <a href="#toc" class="back-toc">↑ 目次に戻る</a>
+        </div>
+      </div>
+    </section>
   
 
-  <a href="#top" class="btn-top">TOPへ戻る</a>
-</div>
+    <section id="step2" class="card step-section">
+      <h2 class="step-title">Step 2：内容を選択し、次へ進む</h2>
+      <div class="step-body">
+        <p>表示された画面で、以下のように内容を選択し「次へ進む」をクリックする。</p>
+        
+          <div class="shot-list">
+            
+              <figure class="shot">
+                <img src="images/CleanShot 2025-10-15 at 13.08.38.png" alt="Step 2：内容を選択し、次へ進む - CleanShot 2025-10-15 at 13.08.38.png">
+              </figure>
+              
+            
+          </div>
+        
+        <div class="back-links">
+          <a href="#toc" class="back-toc">↑ 目次に戻る</a>
+        </div>
+      </div>
+    </section>
+  
+
+    <section id="step3" class="card step-section">
+      <h2 class="step-title">Step 3：メールアドレス・パスワード入力と本人確認</h2>
+      <div class="step-body">
+        <p>メールアドレス、パスワードの入力と本人確認を行う。</p>
+        
+          <div class="shot-list">
+            
+              <figure class="shot">
+                <img src="images/CleanShot 2025-10-15 at 13.19.10.png" alt="Step 3：メールアドレス・パスワード入力と本人確認 - CleanShot 2025-10-15 at 13.19.10.png">
+              </figure>
+              
+            
+          </div>
+        
+        <div class="back-links">
+          <a href="#toc" class="back-toc">↑ 目次に戻る</a>
+        </div>
+      </div>
+    </section>
+  
+
+    <section id="step4" class="card step-section">
+      <h2 class="step-title">Step 4：個人情報・クレジットカード入力</h2>
+      <div class="step-body">
+        
+        <p>個人情報、クレジットカード情報を入力する。</p>
+        <p class="warn">※クレジットカードの有効性の確認は時間がかかる場合あり。</p>
+        <p>カード確認が <strong>OK</strong> になったら次へ進む。</p>
+      
+        
+          <div class="shot-list">
+            
+              <figure class="shot">
+                <img src="images/CleanShot 2025-10-15 at 13.53.30.png" alt="Step 4：個人情報・クレジットカード入力 - CleanShot 2025-10-15 at 13.53.30.png">
+              </figure>
+              <div class="arrow-down" aria-hidden="true">▼</div>
+            
+              <figure class="shot">
+                <img src="images/CleanShot 2025-10-15 at 14.08.12.png" alt="Step 4：個人情報・クレジットカード入力 - CleanShot 2025-10-15 at 14.08.12.png">
+              </figure>
+              
+            
+          </div>
+        
+        <div class="back-links">
+          <a href="#toc" class="back-toc">↑ 目次に戻る</a>
+        </div>
+      </div>
+    </section>
+  
+
+    <section id="step5" class="card step-section">
+      <h2 class="step-title">Step 5：入力内容の確認・申し込み完了</h2>
+      <div class="step-body">
+        <p>入力内容に間違いがないか確認し、申し込みを完了させる。</p>
+        
+          <div class="shot-list">
+            
+              <figure class="shot">
+                <img src="images/CleanShot 2025-10-15 at 14.13.53.png" alt="Step 5：入力内容の確認・申し込み完了 - CleanShot 2025-10-15 at 14.13.53.png">
+              </figure>
+              <div class="arrow-down" aria-hidden="true">▼</div>
+            
+              <figure class="shot">
+                <img src="images/CleanShot 2025-10-15 at 14.16.40.png" alt="Step 5：入力内容の確認・申し込み完了 - CleanShot 2025-10-15 at 14.16.40.png">
+              </figure>
+              <div class="arrow-down" aria-hidden="true">▼</div>
+            
+              <figure class="shot">
+                <img src="images/CleanShot 2025-10-15 at 14.19.15.png" alt="Step 5：入力内容の確認・申し込み完了 - CleanShot 2025-10-15 at 14.19.15.png">
+              </figure>
+              
+            
+          </div>
+        
+        <div class="back-links">
+          <a href="#toc" class="back-toc">↑ 目次に戻る</a>
+        </div>
+      </div>
+    </section>
+  
+
+    <section id="step6" class="card step-section">
+      <h2 class="step-title">Step 6：TOPページからマイページにログイン</h2>
+      <div class="step-body">
+        
+        <p>リンクスメイト TOP から「マイページ」にログインする。</p>
+        <p class="note">※登録メールアドレス宛に認証コードが届くので入力。</p>
+      
+        
+          <div class="shot-list">
+            
+              <figure class="shot">
+                <img src="images/CleanShot 2025-10-15 at 14.19.47.png" alt="Step 6：TOPページからマイページにログイン - CleanShot 2025-10-15 at 14.19.47.png">
+              </figure>
+              <div class="arrow-down" aria-hidden="true">▼</div>
+            
+              <figure class="shot">
+                <img src="images/CleanShot 2025-10-15 at 14.20.41.png" alt="Step 6：TOPページからマイページにログイン - CleanShot 2025-10-15 at 14.20.41.png">
+              </figure>
+              <div class="arrow-down" aria-hidden="true">▼</div>
+            
+              <figure class="shot">
+                <img src="images/CleanShot 2025-10-15 at 14.21.08.png" alt="Step 6：TOPページからマイページにログイン - CleanShot 2025-10-15 at 14.21.08.png">
+              </figure>
+              
+            
+          </div>
+        
+        <div class="back-links">
+          <a href="#toc" class="back-toc">↑ 目次に戻る</a>
+        </div>
+      </div>
+    </section>
+  
+
+    <section id="step7" class="card step-section">
+      <h2 class="step-title">Step 7：「重要なお知らせ」から申し込み完了へ（3Dセキュア認証）</h2>
+      <div class="step-body">
+        
+        <p>「重要なお知らせ」に表示される<strong>「申し込み完了」</strong>ボタンをクリックし、クレジットカードの3Dセキュア認証を行う。</p>
+        <p class="note">※このあたりの動作が重たい時があるので、繰り返しボタンをクリックしないよう注意。</p>
+        <p class="note">※3Dセキュアの認証コードが必要な場合は、作業用グループLINEに届く認証コードを確認して入力。</p>
+      
+        
+          <div class="shot-list">
+            
+              <figure class="shot">
+                <img src="images/CleanShot 2025-10-15 at 14.24.03.png" alt="Step 7：「重要なお知らせ」から申し込み完了へ（3Dセキュア認証） - CleanShot 2025-10-15 at 14.24.03.png">
+              </figure>
+              <div class="arrow-down" aria-hidden="true">▼</div>
+            
+              <figure class="shot">
+                <img src="images/CleanShot 2025-10-15 at 14.24.59.png" alt="Step 7：「重要なお知らせ」から申し込み完了へ（3Dセキュア認証） - CleanShot 2025-10-15 at 14.24.59.png">
+              </figure>
+              
+            
+          </div>
+        
+        <div class="back-links">
+          <a href="#toc" class="back-toc">↑ 目次に戻る</a>
+        </div>
+      </div>
+    </section>
+  
+
+    <section id="step8" class="card step-section">
+      <h2 class="step-title">Step 8：「重要なお知らせ」から EID の提出に進む</h2>
+      <div class="step-body">
+        <p>マイページ「重要なお知らせ」に表示される <strong>「EIDの提出」</strong> へ進む。</p>
+        
+          <div class="shot-list">
+            
+              <figure class="shot">
+                <img src="images/CleanShot 2025-10-15 at 14.26.06.png" alt="Step 8：「重要なお知らせ」から EID の提出に進む - CleanShot 2025-10-15 at 14.26.06.png">
+              </figure>
+              <div class="arrow-down" aria-hidden="true">▼</div>
+            
+              <figure class="shot">
+                <img src="images/CleanShot 2025-10-15 at 14.26.37.png" alt="Step 8：「重要なお知らせ」から EID の提出に進む - CleanShot 2025-10-15 at 14.26.37.png">
+              </figure>
+              
+            
+          </div>
+        
+        <div class="back-links">
+          <a href="#toc" class="back-toc">↑ 目次に戻る</a>
+        </div>
+      </div>
+    </section>
+  
+
+    <section id="step9" class="card step-section">
+      <h2 class="step-title">Step 9：EID を入力し、登録を完了させる</h2>
+      <div class="step-body">
+        <p>端末の EID（32桁）を入力し、確認画面 → 提出で登録を完了させる。</p>
+        
+          <div class="shot-list">
+            
+              <figure class="shot">
+                <img src="images/CleanShot 2025-10-15 at 14.30.25.png" alt="Step 9：EID を入力し、登録を完了させる - CleanShot 2025-10-15 at 14.30.25.png">
+              </figure>
+              <div class="arrow-down" aria-hidden="true">▼</div>
+            
+              <figure class="shot">
+                <img src="images/CleanShot 2025-10-15 at 14.32.48.png" alt="Step 9：EID を入力し、登録を完了させる - CleanShot 2025-10-15 at 14.32.48.png">
+              </figure>
+              <div class="arrow-down" aria-hidden="true">▼</div>
+            
+              <figure class="shot">
+                <img src="images/CleanShot 2025-10-15 at 14.34.24.png" alt="Step 9：EID を入力し、登録を完了させる - CleanShot 2025-10-15 at 14.34.24.png">
+              </figure>
+              
+            
+          </div>
+        
+        <div class="back-links">
+          <a href="#toc" class="back-toc">↑ 目次に戻る</a>
+        </div>
+      </div>
+    </section>
+  
+
+    <section id="step10" class="card step-section">
+      <h2 class="step-title">Step 10：eSIM設定通知からモバイル通信プランのインストールへ進む</h2>
+      <div class="step-body">
+        
+        <p>入力した EID の端末に通知が届くのでタップし、モバイル通信プランのインストールへ進む。</p>
+        <p class="warn">※Wi-Fi に繋いでから作業する。</p>
+      
+        
+          <div class="shot-list">
+            
+              <figure class="shot">
+                <img src="images/S__231104560.jpg" alt="Step 10：eSIM設定通知からモバイル通信プランのインストールへ進む - S__231104560.jpg">
+              </figure>
+              <div class="arrow-down" aria-hidden="true">▼</div>
+            
+              <figure class="shot">
+                <img src="images/S__231104569_0.jpg" alt="Step 10：eSIM設定通知からモバイル通信プランのインストールへ進む - S__231104569_0.jpg">
+              </figure>
+              <div class="arrow-down" aria-hidden="true">▼</div>
+            
+              <figure class="shot">
+                <img src="images/S__231104571_0.jpg" alt="Step 10：eSIM設定通知からモバイル通信プランのインストールへ進む - S__231104571_0.jpg">
+              </figure>
+              
+            
+          </div>
+        
+        <div class="back-links">
+          <a href="#toc" class="back-toc">↑ 目次に戻る</a>
+        </div>
+      </div>
+    </section>
+  
+
+    <section id="step11" class="card step-section">
+      <h2 class="step-title">Step 11：eSIM のアクティベートを完了させる</h2>
+      <div class="step-body">
+        <p>案内に従ってアクティベートを進め、完了させる。</p>
+        
+          <div class="shot-list">
+            
+              <figure class="shot">
+                <img src="images/S__231104572_0.jpg" alt="Step 11：eSIM のアクティベートを完了させる - S__231104572_0.jpg">
+              </figure>
+              <div class="arrow-down" aria-hidden="true">▼</div>
+            
+              <figure class="shot">
+                <img src="images/S__231104573_0.jpg" alt="Step 11：eSIM のアクティベートを完了させる - S__231104573_0.jpg">
+              </figure>
+              <div class="arrow-down" aria-hidden="true">▼</div>
+            
+              <figure class="shot">
+                <img src="images/S__231104574_0.jpg" alt="Step 11：eSIM のアクティベートを完了させる - S__231104574_0.jpg">
+              </figure>
+              
+            
+          </div>
+        
+        <div class="back-links">
+          <a href="#toc" class="back-toc">↑ 目次に戻る</a>
+        </div>
+      </div>
+    </section>
+  
+
+    <section id="step12" class="card step-section">
+      <h2 class="step-title">Step 12：リンクスメイトのプロファイルをダウンロード・インストール</h2>
+      <div class="step-body">
+        
+        <p>Safari で「リンクスメイト プロファイル」等で検索 → 公式の「iPhone利用について」から <strong>APN構成プロファイル</strong> をダウンロードし、設定アプリからインストールする。</p>
+        <p class="warn">※インストール完了後、Wi-Fi をオフにする。</p>
+      
+        
+          <div class="shot-list">
+            
+              <figure class="shot">
+                <img src="images/S__231104581_0.jpg" alt="Step 12：リンクスメイトのプロファイルをダウンロード・インストール - S__231104581_0.jpg">
+              </figure>
+              <div class="arrow-down" aria-hidden="true">▼</div>
+            
+              <figure class="shot">
+                <img src="images/S__231104583_0.jpg" alt="Step 12：リンクスメイトのプロファイルをダウンロード・インストール - S__231104583_0.jpg">
+              </figure>
+              <div class="arrow-down" aria-hidden="true">▼</div>
+            
+              <figure class="shot">
+                <img src="images/S__231104584_0.jpg" alt="Step 12：リンクスメイトのプロファイルをダウンロード・インストール - S__231104584_0.jpg">
+              </figure>
+              <div class="arrow-down" aria-hidden="true">▼</div>
+            
+              <figure class="shot">
+                <img src="images/S__231104585_0.jpg" alt="Step 12：リンクスメイトのプロファイルをダウンロード・インストール - S__231104585_0.jpg">
+              </figure>
+              <div class="arrow-down" aria-hidden="true">▼</div>
+            
+              <figure class="shot">
+                <img src="images/S__231104586_0.jpg" alt="Step 12：リンクスメイトのプロファイルをダウンロード・インストール - S__231104586_0.jpg">
+              </figure>
+              <div class="arrow-down" aria-hidden="true">▼</div>
+            
+              <figure class="shot">
+                <img src="images/S__231104588_0.jpg" alt="Step 12：リンクスメイトのプロファイルをダウンロード・インストール - S__231104588_0.jpg">
+              </figure>
+              <div class="arrow-down" aria-hidden="true">▼</div>
+            
+              <figure class="shot">
+                <img src="images/S__231104589_0.jpg" alt="Step 12：リンクスメイトのプロファイルをダウンロード・インストール - S__231104589_0.jpg">
+              </figure>
+              <div class="arrow-down" aria-hidden="true">▼</div>
+            
+              <figure class="shot">
+                <img src="images/S__231104590_0.jpg" alt="Step 12：リンクスメイトのプロファイルをダウンロード・インストール - S__231104590_0.jpg">
+              </figure>
+              <div class="arrow-down" aria-hidden="true">▼</div>
+            
+              <figure class="shot">
+                <img src="images/S__231104591_0.jpg" alt="Step 12：リンクスメイトのプロファイルをダウンロード・インストール - S__231104591_0.jpg">
+              </figure>
+              
+            
+          </div>
+        
+        <div class="back-links">
+          <a href="#toc" class="back-toc">↑ 目次に戻る</a>
+        </div>
+      </div>
+    </section>
+  
+
+    <section id="step13" class="card step-section">
+      <h2 class="step-title">Step 13：eSIM の名称を変更</h2>
+      <div class="step-body">
+        
+        <p>設定アプリ → モバイル通信 → インストールした eSIM を選択し、複数の eSIM を区別できるよう名称を変更する。</p>
+        <p><strong>例）</strong>グループ1親、グループ1子①、グループ2親、グループ2子① など</p>
+      
+        
+          <div class="shot-list">
+            
+              <figure class="shot">
+                <img src="images/S__231112714_0.jpg" alt="Step 13：eSIM の名称を変更 - S__231112714_0.jpg">
+              </figure>
+              <div class="arrow-down" aria-hidden="true">▼</div>
+            
+              <figure class="shot">
+                <img src="images/S__231112716_0.jpg" alt="Step 13：eSIM の名称を変更 - S__231112716_0.jpg">
+              </figure>
+              <div class="arrow-down" aria-hidden="true">▼</div>
+            
+              <figure class="shot">
+                <img src="images/S__231112717_0.jpg" alt="Step 13：eSIM の名称を変更 - S__231112717_0.jpg">
+              </figure>
+              
+            
+          </div>
+        
+        <div class="back-links">
+          <a href="#toc" class="back-toc">↑ 目次に戻る</a>
+        </div>
+      </div>
+    </section>
+  
+
+    <section id="step14" class="card step-section">
+      <h2 class="step-title">Step 14：親②（データ専用SIM）の開通</h2>
+      <div class="step-body">
+        
+        <p>Step 1〜13 の手順をもう一度繰り返し、<strong>親②（データ専用SIM）</strong> を申し込み・開通する。</p>
+        <p class="note">※すぐに申し込みすれば本人確認や一部手順は省略される場合がある。</p>
+        <p>申し込み後、<strong>LinksMate のマイページ</strong>にログインし、右上の<strong>グループ選択</strong>を「グループ2」に切り替える。その後、Step 7 以降の<strong>クレジットカード認証やEID登録</strong>へ進む（EIDは同一端末のものを使う）。</p>
+      
+        
+          <div class="shot-list">
+            
+              <figure class="shot">
+                <img src="images/CleanShot 2025-10-15 at 15.15.09.png" alt="Step 14：親②（データ専用SIM）の開通 - CleanShot 2025-10-15 at 15.15.09.png">
+              </figure>
+              
+            
+          </div>
+        
+        <div class="back-links">
+          <a href="#toc" class="back-toc">↑ 目次に戻る</a>
+        </div>
+      </div>
+    </section>
+  
+
+    <section id="step15" class="card step-section">
+      <h2 class="step-title">Step 15：グループ1 と グループ2 に音声SIMを追加していく</h2>
+      <div class="step-body">
+        
+        <p>音声SIMを追加したいグループに切り替え、マイページ下部の「SIMカードの追加・削除」から <strong>新規SIMカードのお申し込み</strong> → 種別：<strong>音声通話+SMS+データ通信</strong>、方式：<strong>eSIM</strong> を選択して進める。</p>
+      
+        
+          <div class="shot-list">
+            
+              <figure class="shot">
+                <img src="images/CleanShot 2025-10-15 at 16.13.09.png" alt="Step 15：グループ1 と グループ2 に音声SIMを追加していく - CleanShot 2025-10-15 at 16.13.09.png">
+              </figure>
+              <div class="arrow-down" aria-hidden="true">▼</div>
+            
+              <figure class="shot">
+                <img src="images/CleanShot 2025-10-15 at 16.15.13.png" alt="Step 15：グループ1 と グループ2 に音声SIMを追加していく - CleanShot 2025-10-15 at 16.15.13.png">
+              </figure>
+              <div class="arrow-down" aria-hidden="true">▼</div>
+            
+              <figure class="shot">
+                <img src="images/CleanShot 2025-10-15 at 16.16.46.png" alt="Step 15：グループ1 と グループ2 に音声SIMを追加していく - CleanShot 2025-10-15 at 16.16.46.png">
+              </figure>
+              <div class="arrow-down" aria-hidden="true">▼</div>
+            
+              <figure class="shot">
+                <img src="images/CleanShot 2025-10-15 at 16.17.47.png" alt="Step 15：グループ1 と グループ2 に音声SIMを追加していく - CleanShot 2025-10-15 at 16.17.47.png">
+              </figure>
+              <div class="arrow-down" aria-hidden="true">▼</div>
+            
+              <figure class="shot">
+                <img src="images/CleanShot 2025-10-15 at 16.19.10.png" alt="Step 15：グループ1 と グループ2 に音声SIMを追加していく - CleanShot 2025-10-15 at 16.19.10.png">
+              </figure>
+              <div class="arrow-down" aria-hidden="true">▼</div>
+            
+              <figure class="shot">
+                <img src="images/CleanShot 2025-10-15 at 16.19.58.png" alt="Step 15：グループ1 と グループ2 に音声SIMを追加していく - CleanShot 2025-10-15 at 16.19.58.png">
+              </figure>
+              <div class="arrow-down" aria-hidden="true">▼</div>
+            
+              <figure class="shot">
+                <img src="images/CleanShot 2025-10-15 at 16.21.37.png" alt="Step 15：グループ1 と グループ2 に音声SIMを追加していく - CleanShot 2025-10-15 at 16.21.37.png">
+              </figure>
+              <div class="arrow-down" aria-hidden="true">▼</div>
+            
+              <figure class="shot">
+                <img src="images/CleanShot 2025-10-15 at 16.23.26.png" alt="Step 15：グループ1 と グループ2 に音声SIMを追加していく - CleanShot 2025-10-15 at 16.23.26.png">
+              </figure>
+              
+            
+          </div>
+        
+        <div class="back-links">
+          <a href="#toc" class="back-toc">↑ 目次に戻る</a>
+        </div>
+      </div>
+    </section>
+  
+
+    <section id="step16" class="card step-section">
+      <h2 class="step-title">Step 16：本人確認を再度行い、申し込みを完了</h2>
+      <div class="step-body">
+        
+        <p>音声SIMの追加申込み時、本人確認（eKYC）を再度求められる。画面の指示に従い、<strong>マイナンバーカード</strong>などで認証 → 受付完了後に<strong>申し込み完了</strong>ボタンで確定。</p>
+        <p class="note">※本人確認の手順は親①を作成した時と多少異なる場合あり。</p>
+        <p>完了後、<strong>Step 8〜13</strong> の手順で開通し、続いて<strong>グループ2の子①</strong>も同手順で作成する。</p>
+      
+        
+          <div class="shot-list">
+            
+              <figure class="shot">
+                <img src="images/CleanShot 2025-10-15 at 16.23.59.png" alt="Step 16：本人確認を再度行い、申し込みを完了 - CleanShot 2025-10-15 at 16.23.59.png">
+              </figure>
+              <div class="arrow-down" aria-hidden="true">▼</div>
+            
+              <figure class="shot">
+                <img src="images/CleanShot 2025-10-15 at 16.25.16.png" alt="Step 16：本人確認を再度行い、申し込みを完了 - CleanShot 2025-10-15 at 16.25.16.png">
+              </figure>
+              <div class="arrow-down" aria-hidden="true">▼</div>
+            
+              <figure class="shot">
+                <img src="images/CleanShot 2025-10-15 at 16.43.52.png" alt="Step 16：本人確認を再度行い、申し込みを完了 - CleanShot 2025-10-15 at 16.43.52.png">
+              </figure>
+              <div class="arrow-down" aria-hidden="true">▼</div>
+            
+              <figure class="shot">
+                <img src="images/CleanShot 2025-10-15 at 16.44.25.png" alt="Step 16：本人確認を再度行い、申し込みを完了 - CleanShot 2025-10-15 at 16.44.25.png">
+              </figure>
+              
+            
+          </div>
+        
+        <div class="back-links">
+          <a href="#toc" class="back-toc">↑ 目次に戻る</a>
+        </div>
+      </div>
+    </section>
+  
+
+    <section id="step17" class="card step-section">
+      <h2 class="step-title">Step 17：モッピー・ポケセンのアカウント作成後、使用済みの回線を削除</h2>
+      <div class="step-body">
+        
+        <p>モッピーやポケセンでアカウントを作成した後は、使用済みになった回線を削除する。</p>
+        <ol>
+          <li>LinksMate のマイページにログイン。</li>
+          <li>「ご利用中のSIMカード一覧」から、削除したい回線の右側にある<strong>「削除する」</strong>をクリック。</li>
+          <li><strong class="warn">※親のデータ専用回線は絶対に削除しない。</strong></li>
+          <li>マイページで回線削除が完了したら、iPhone の<strong>設定アプリ → モバイル通信</strong>に進み、対応する削除済み eSIM も削除しておく。</li>
+          <li>その後、<strong>Step 15</strong> からの手順を繰り返して、次のアカウント作成を進める。</li>
+        </ol>
+      
+        
+          <div class="shot-list">
+            
+              <figure class="shot">
+                <img src="images/CleanShot 2025-10-15 at 21.08.22.png" alt="Step 17：モッピー・ポケセンのアカウント作成後、使用済みの回線を削除 - CleanShot 2025-10-15 at 21.08.22.png">
+              </figure>
+              
+            
+          </div>
+        
+        <div class="back-links">
+          <a href="#toc" class="back-toc">↑ 目次に戻る</a>
+        </div>
+      </div>
+    </section>
+  
+  </main>
 </body>
 </html>
