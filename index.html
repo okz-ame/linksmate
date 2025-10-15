@@ -18,6 +18,7 @@
   h1{font-size:28px;margin:0 0 8px;color:#1e3a8a;text-align:center}
   .lead{color:var(--muted);text-align:center;margin:0 0 26px}
   .note-red{color:#d90429;font-weight:700}
+  .note{color:#666}
 
   /* セクション */
   section.card{background:var(--card);border-radius:14px;box-shadow:0 8px 28px rgba(2,6,23,.06);padding:20px 22px;margin:16px 0}
@@ -30,14 +31,14 @@
   img{max-width:100%;border-radius:10px;box-shadow:0 6px 18px rgba(2,6,23,.08);margin:10px 0}
 
   /* 目次（概要の下に常時表示） */
-  #tocBlock{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px}
+  #tocBlock{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;margin-top:16px}
   #tocBlock h3{margin:0 0 8px;color:#0f172a;font-size:16px}
   #tocBlock ul{margin:0;padding-left:18px;columns:2;column-gap:28px}
   #tocBlock li{margin:4px 0;break-inside:avoid}
   #tocBlock a{color:var(--accent);text-decoration:none}
   #tocBlock a:hover{text-decoration:underline}
 
-  /* ハンバーガー & サイドメニュー（閉じてる時は完全にメニュー非表示） */
+  /* ハンバーガー & サイドメニュー（閉じてる時は完全非表示） */
   #hamburger{
     position:fixed;top:14px;right:14px;z-index:1001;
     width:46px;height:46px;border-radius:10px;border:none;cursor:pointer;
@@ -70,6 +71,7 @@
 </style>
 </head>
 <body>
+<!-- ハンバーガーとサイドメニュー -->
 <button id="hamburger" aria-label="メニューを開く">☰</button>
 <nav id="sideMenu" aria-label="サイド目次" aria-hidden="true">
   <button id="closeMenu">閉じる ×</button>
@@ -79,7 +81,7 @@
 
 <div class="container">
   <h1>リンクスメイト申し込みマニュアル</h1>
-  <p class="lead">eSIMの開通〜音声SIMの追加までを画面付きで解説します。</p>
+  <p class="lead">eSIMの開通〜音声SIMの追加までを画面付きで解説。</p>
 
   <!-- 概要 -->
   <section class="card" id="overview">
@@ -88,8 +90,18 @@
       <li>PC（申込操作用） <span class="note-red">※リンクスメイトの申し込みの作業はPCで行ってください</span></li>
       <li>スマートフォン（eSIMを入れる端末）</li>
       <li>クレジットカード（3Dセキュア対応）</li>
-      <li>本人確認書類（マイナンバーカード 等）</li>
+      <li>本人確認書類（マイナンバーカード、または運転免許証 など）</li>
     </ul>
+
+    <h3>手順概要</h3>
+    <ol>
+      <li>新規でデータ専用SIMを申し込む（親①）</li>
+      <li>親①の開通後、同じ手順でもう1回線（親②）を申し込む（この時点でグループ1・グループ2が自動作成）</li>
+      <li>グループ1に音声SIMを追加（子①）</li>
+      <li>グループ2に音声SIMを追加（子②）</li>
+      <li>モッピー・ポケセンのアカウント作成後、子①・子②を解約</li>
+      <li>各グループで 3〜5 を繰り返す</li>
+    </ol>
 
     <!-- 常時表示の目次 -->
     <div id="tocBlock" class="card">
@@ -98,34 +110,39 @@
     </div>
   </section>
 
-  <!-- ↓↓↓ ここから各ステップ（見出し h2 が自動的に目次へ入ります） ↓↓↓ -->
-
+  <!-- Step 1 -->
   <section class="card anchor" id="step1">
     <h2 class="step">Step 1：リンクスメイトの公式サイトにアクセス</h2>
     <p>リンクスメイトのHP（<a href="https://linksmate.jp/" target="_blank" rel="noopener">https://linksmate.jp/</a>）にアクセスし、申し込みに進む。</p>
     <img src="images/CleanShot 2025-10-15 at 13.07.03.png" alt="Step1 画面">
   </section>
 
+  <!-- Step 2 -->
   <section class="card anchor" id="step2">
     <h2 class="step">Step 2：内容を選択し、次へ進む</h2>
     <p>表示された画面で、以下のように内容を選択し「次へ進む」をクリックする。</p>
     <img src="images/CleanShot 2025-10-15 at 13.08.38.png" alt="Step2 画面">
+    <img src="images/CleanShot 2025-10-15 at 13.13.00.png" alt="Step2 画面-2">
+    <img src="images/CleanShot 2025-10-15 at 13.17.59.png" alt="Step2 画面-3">
   </section>
 
+  <!-- Step 3 -->
   <section class="card anchor" id="step3">
     <h2 class="step">Step 3：メールアドレス・パスワードの入力と本人確認</h2>
     <p>メールアドレス、パスワードの入力と本人確認を行う。</p>
     <img src="images/CleanShot 2025-10-15 at 13.19.10.png" alt="Step3 画面">
   </section>
 
+  <!-- Step 4 -->
   <section class="card anchor" id="step4">
-    <h2 class="step">Step 4：個人情報・クレジットカード入力</h2>
-    <p>個人情報、クレジットカード情報を入力する。</p>
-    <p class="note-red">※クレジットカード確認は時間がかかる場合あり</p>
+    <h2 class="step">Step 4：個人情報・クレジットカード情報を入力</h2>
+    <p>個人情報、クレジットカード情報を入力。</p>
+    <p class="note-red">※クレジットカードの有効性の確認は時間がかかる場合がある。確認がOKになったら次へ。</p>
     <img src="images/CleanShot 2025-10-15 at 13.53.30.png" alt="Step4-1 画面">
     <img src="images/CleanShot 2025-10-15 at 14.08.12.png" alt="Step4-2 画面">
   </section>
 
+  <!-- Step 5 -->
   <section class="card anchor" id="step5">
     <h2 class="step">Step 5：入力内容の確認・申し込み完了</h2>
     <p>入力内容に間違いがないか確認し、申し込みを完了させる。</p>
@@ -134,26 +151,167 @@
     <img src="images/CleanShot 2025-10-15 at 14.19.15.png" alt="Step5-3 画面">
   </section>
 
-  <!-- 以降 Step 6〜17 も同じ要領で追加してOK（h2のテキストがそのまま目次に入ります） -->
+  <!-- Step 6 -->
+  <section class="card anchor" id="step6">
+    <h2 class="step">Step 6：TOPページからマイページにログイン</h2>
+    <p>TOPページから、マイページにログインする。<br><span class="note">※登録したメールアドレス宛に認証が飛ぶ。</span></p>
+    <img src="images/CleanShot 2025-10-15 at 14.19.47.png" alt="Step6-1 画面">
+    <img src="images/CleanShot 2025-10-15 at 14.20.41.png" alt="Step6-2 画面">
+    <img src="images/CleanShot 2025-10-15 at 14.21.08.png" alt="Step6-3 画面">
+  </section>
 
-  <footer style="text-align:center;color:#94a3b8;margin-top:40px;">© LinksMate Manual</footer>
+  <!-- Step 7 -->
+  <section class="card anchor" id="step7">
+    <h2 class="step">Step 7：「重要なお知らせ」からカード認証</h2>
+    <p>「重要なお知らせ」に表示されている「申し込み完了」ボタンをクリックし、クレジットカードの認証を行う。</p>
+    <p class="note">※このあたりの動作が重たい時があるので、繰り返しボタンをクリックしないように注意。<br>※3Dセキュア認証が飛ぶ場合は、作業用グループLINEにて認証コードを確認し入力する。</p>
+    <img src="images/CleanShot 2025-10-15 at 14.24.03.png" alt="Step7-1 画面">
+    <img src="images/CleanShot 2025-10-15 at 14.24.59.png" alt="Step7-2 画面">
+  </section>
+
+  <!-- Step 8 -->
+  <section class="card anchor" id="step8">
+    <h2 class="step">Step 8：EID提出に進む</h2>
+    <p>「重要なお知らせ」から「EIDの提出」に進む。</p>
+    <p class="note">※EIDの確認方法：iPhone「設定 → 一般 → 情報」、Android「設定 → デバイス情報 → SIMのステータス」など</p>
+    <img src="images/CleanShot 2025-10-15 at 14.26.06.png" alt="Step8-1 画面">
+    <img src="images/CleanShot 2025-10-15 at 14.26.37.png" alt="Step8-2 画面">
+  </section>
+
+  <!-- Step 9 -->
+  <section class="card anchor" id="step9">
+    <h2 class="step">Step 9：EIDを入力し、登録を完了</h2>
+    <p>EIDを入力し、提出内容の確認→提出で登録を完了させる。</p>
+    <p class="note">※EIDは半角数字。誤登録に注意。完了後「提出を受け付けました」と表示される。</p>
+    <img src="images/CleanShot 2025-10-15 at 14.30.25.png" alt="Step9-1 画面">
+    <img src="images/CleanShot 2025-10-15 at 14.32.48.png" alt="Step9-2 画面">
+    <img src="images/CleanShot 2025-10-15 at 14.34.24.png" alt="Step9-3 画面">
+  </section>
+
+  <!-- Step 10 -->
+  <section class="card anchor" id="step10">
+    <h2 class="step">Step 10：eSIM設定通知からモバイル通信プランのインストールへ進む</h2>
+    <p class="note-red">※Wi-Fiに繋いでから作業する</p>
+    <p>入力したEIDの端末に通知が来るのでタップし、モバイル通信プランのインストールへ進む。</p>
+    <img src="images/S__231104560.jpg" alt="Step10-1">
+    <img src="images/S__231104569_0.jpg" alt="Step10-2">
+    <img src="images/S__231104571_0.jpg" alt="Step10-3">
+  </section>
+
+  <!-- Step 11 -->
+  <section class="card anchor" id="step11">
+    <h2 class="step">Step 11：eSIMのアクティベートを完了</h2>
+    <p>表示に従い「続ける」等でアクティベートを完了させる。</p>
+    <img src="images/S__231104572_0.jpg" alt="Step11-1">
+    <img src="images/S__231104573_0.jpg" alt="Step11-2">
+    <img src="images/S__231104574_0.jpg" alt="Step11-3">
+  </section>
+
+  <!-- Step 12 -->
+  <section class="card anchor" id="step12">
+    <h2 class="step">Step 12：リンクスメイトのプロファイルをダウンロードし、インストール</h2>
+    <p>APN構成プロファイルをダウンロードし、「設定」からインストールを完了させる。</p>
+    <p class="note-red">※インストール完了後、Wi-Fiをオフにする</p>
+    <img src="images/S__231104581_0.jpg" alt="Step12-1">
+    <img src="images/S__231104583_0.jpg" alt="Step12-2">
+    <img src="images/S__231104584_0.jpg" alt="Step12-3">
+    <img src="images/S__231104585_0.jpg" alt="Step12-4">
+    <img src="images/S__231104586_0.jpg" alt="Step12-5">
+    <img src="images/S__231104588_0.jpg" alt="Step12-6">
+    <img src="images/S__231104589_0.jpg" alt="Step12-7">
+    <img src="images/S__231104590_0.jpg" alt="Step12-8">
+    <img src="images/S__231104591_0.jpg" alt="Step12-9">
+  </section>
+
+  <!-- Step 13 -->
+  <section class="card anchor" id="step13">
+    <h2 class="step">Step 13：eSIMの名称を変更</h2>
+    <p>設定アプリ → モバイル通信 → 対象のeSIMを選び、識別しやすい名称に変更する。</p>
+    <img src="images/S__231112714_0.jpg" alt="Step13-1">
+    <img src="images/S__231112716_0.jpg" alt="Step13-2">
+    <img src="images/S__231112717_0.jpg" alt="Step13-3">
+  </section>
+
+  <!-- Step 14 -->
+  <section class="card anchor" id="step14">
+    <h2 class="step">Step 14：親②（データ専用SIM）の開通</h2>
+    <p>Step 1〜13 の手順をもう一度繰り返し、親②（データ専用SIM）を申し込み・開通する。</p>
+    <p>申し込み後、マイページ右上の<strong>グループ選択</strong>を「グループ2」に変更し、Step 7 以降のクレジットカード認証・EID登録へ進む。</p>
+    <p class="note-red">※EIDは同一のものを使い、同じ端末に複数枚のeSIMを入れていく。</p>
+    <img src="images/CleanShot 2025-10-15 at 15.15.09.png" alt="Step14 画面">
+  </section>
+
+  <!-- Step 15 -->
+  <section class="card anchor" id="step15">
+    <h2 class="step">Step 15：音声SIMの申し込み</h2>
+    <p>グループ1とグループ2に音声SIMを追加していく。</p>
+    <ol>
+      <li>マイページにログインし、音声SIMを追加したいグループを選択。</li>
+      <li>「SIMカードの追加・削除」→「新規SIMカードのお申し込み」。</li>
+      <li>「音声通話＋SMS＋データ通信」→「新規申し込み」。</li>
+      <li>「SIMのみ」→「eSIM」を選択。</li>
+      <li>契約者情報を確認し、「申し込み内容を確認する」へ。</li>
+      <li>すべての項目にチェック → 「SIMカード追加を申し込む」。</li>
+      <li>「申し込み受付完了」→「マイページ」。</li>
+    </ol>
+    <img src="images/CleanShot 2025-10-15 at 16.13.09.png" alt="Step15-1">
+    <img src="images/CleanShot 2025-10-15 at 16.15.13.png" alt="Step15-2">
+    <img src="images/CleanShot 2025-10-15 at 16.16.46.png" alt="Step15-3">
+    <img src="images/CleanShot 2025-10-15 at 16.17.47.png" alt="Step15-4">
+    <img src="images/CleanShot 2025-10-15 at 16.19.10.png" alt="Step15-5">
+    <img src="images/CleanShot 2025-10-15 at 16.19.58.png" alt="Step15-6">
+    <img src="images/CleanShot 2025-10-15 at 16.21.37.png" alt="Step15-7">
+    <img src="images/CleanShot 2025-10-15 at 16.23.26.png" alt="Step15-8">
+  </section>
+
+  <!-- Step 16 -->
+  <section class="card anchor" id="step16">
+    <h2 class="step">Step 16：本人確認を再度行い、申し込みを完了</h2>
+    <p>音声SIMの申し込み後、再度本人確認を行う（親①時と手順が異なる場合あり）。</p>
+    <ol>
+      <li>「重要なお知らせ」から<strong>本人確認書類提出</strong>の「提出する」。</li>
+      <li>本人確認書類を選択（例：マイナンバーカード）→「本人確認URL発行」。</li>
+      <li>QRをスマホで読み取り、<strong>LIQUID eKYC</strong>で本人確認。</li>
+      <li>完了後「認証状況を取得」で反映確認 → 「申し込み完了」ボタン。</li>
+    </ol>
+    <p>完了したら <strong>Step 8〜13</strong> の手順でeSIMを開通。続けて<strong>グループ2の子①</strong>も同手順で作成する。</p>
+    <img src="images/CleanShot 2025-10-15 at 16.23.59.png" alt="Step16-1">
+    <img src="images/CleanShot 2025-10-15 at 16.25.16.png" alt="Step16-2">
+    <img src="images/CleanShot 2025-10-15 at 16.43.52.png" alt="Step16-3">
+    <img src="images/CleanShot 2025-10-15 at 16.44.25.png" alt="Step16-4">
+  </section>
+
+  <!-- Step 17 -->
+  <section class="card anchor" id="step17">
+    <h2 class="step">Step 17：モッピー・ポケセンのアカウント作成後、使用済みの回線を削除</h2>
+    <p>モッピー・ポケセンでアカウントを作成した後は、使用済みの回線を削除する。</p>
+    <ol>
+      <li>LinksMateのマイページにログイン。</li>
+      <li>「ご利用中のSIMカード一覧」→ 対象行の<strong>「削除する」</strong>をクリック。</li>
+      <li><strong class="note-red">※親のデータ専用回線は絶対に削除しない。</strong></li>
+      <li>マイページでの削除が完了したら、iPhoneの<strong>設定 → モバイル通信</strong>で対応するeSIMも削除。</li>
+      <li>その後、<strong>Step 15 からの手順</strong>を繰り返し次のアカウント作成を進める。</li>
+    </ol>
+    <img src="images/CleanShot 2025-10-15 at 21.08.22.png" alt="Step17 画面">
+  </section>
+
+  <footer style="text-align:center;color:#94a3b8;margin-top:40px;">
+    © 2025 LinksMate Manual | 作成者：okz-ame
+  </footer>
 </div>
 
 <script>
-  // 見出し(h2.step)から目次を自動生成（概要下の常時表示 & サイドメニュー用）
+  // 見出し(h2.step)から目次を自動生成（概要下の常時表示 & サイドメニュー）
   function buildTOC(){
     const headings = Array.from(document.querySelectorAll('h2.step'));
     const tocInline = document.getElementById('tocInline');
     const tocSide = document.getElementById('tocSide');
-
     tocInline.innerHTML = '';
     tocSide.innerHTML = '';
 
     headings.forEach(h => {
-      // セクションIDを取得（h2の親sectionのidを使う）
       const sec = h.closest('section');
       if(!sec || !sec.id) return;
-
       const title = h.textContent.trim();
       const li1 = document.createElement('li');
       const a1 = document.createElement('a');
@@ -167,7 +325,7 @@
     });
   }
 
-  // サイドメニュー開閉（閉じている時は完全に非表示：ハンバーガー以外見えない）
+  // サイドメニュー開閉（閉じてる時は完全非表示）
   const hamburger = document.getElementById('hamburger');
   const sideMenu = document.getElementById('sideMenu');
   const closeBtn = document.getElementById('closeMenu');
