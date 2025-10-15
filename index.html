@@ -1,222 +1,188 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>リンクスメイト申し込みマニュアル</title>
-  <style>
-    body {
-      font-family: 'Noto Sans JP', sans-serif;
-      background: #fafafa;
-      line-height: 1.8;
-      color: #333;
-      margin: 0;
-      padding: 0 16px;
-      box-sizing: border-box;
-    }
-    header {
-      background: #0072c6;
-      color: #fff;
-      text-align: center;
-      padding: 20px;
-      font-size: 1.4em;
-      font-weight: 700;
-    }
-    section {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, .06);
-      margin: 24px auto;
-      padding: 20px;
-      max-width: 820px;
-    }
-    h2 {
-      color: #0072c6;
-      border-left: 6px solid #42a5f5;
-      padding-left: 10px;
-    }
-    h3 {
-      margin-top: 24px;
-      color: #0072c6;
-    }
-    ul, ol { padding-left: 24px; }
-    li { margin-bottom: 6px; }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 10px;
-    }
-    th, td {
-      border: 1px solid #ddd;
-      padding: 8px;
-      text-align: left;
-    }
-    th { background: #e3f2fd; }
-    .imgs {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-      margin-top: 10px;
-    }
-    img {
-      width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,.1);
-    }
-    .red { color: #d60000; font-weight: bold; }
-    .menu-btn {
-      position: fixed;
-      top: 15px;
-      right: 15px;
-      background: #0072c6;
-      color: #fff;
-      border: none;
-      padding: 12px 16px;
-      border-radius: 8px;
-      font-size: 18px;
-      cursor: pointer;
-      z-index: 1000;
-    }
-    nav {
-      position: fixed;
-      top: 0;
-      right: -280px;
-      width: 280px;
-      height: 100%;
-      background: #fff;
-      box-shadow: -2px 0 8px rgba(0,0,0,0.2);
-      padding: 20px;
-      overflow-y: auto;
-      transition: right 0.3s ease;
-      z-index: 999;
-    }
-    nav.active { right: 0; }
-    nav h3 {
-      border-bottom: 2px solid #0072c6;
-      padding-bottom: 8px;
-    }
-    nav a {
-      display: block;
-      color: #0072c6;
-      text-decoration: none;
-      margin: 8px 0;
-      font-size: 15px;
-    }
-    nav a:hover { text-decoration: underline; }
-    .back-to-top {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background: #0072c6;
-      color: white;
-      padding: 10px 14px;
-      border-radius: 50%;
-      cursor: pointer;
-      font-weight: bold;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-      z-index: 1000;
-    }
-    .to-index {
-      display: inline-block;
-      margin-top: 16px;
-      background: #f1f1f1;
-      padding: 8px 12px;
-      border-radius: 6px;
-      text-decoration: none;
-      color: #0072c6;
-      font-size: 14px;
-    }
-    @media(min-width: 700px) {
-      .imgs { grid-template-columns: repeat(2,1fr); }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>リンクスメイト申し込みマニュアル</title>
+<style>
+  :root{
+    --accent:#2563eb;
+    --accent-dark:#1e40af;
+    --ink:#0f172a;
+    --muted:#64748b;
+    --bg:#f8fafc;
+    --card:#ffffff;
+  }
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",Segoe UI,Roboto,Ubuntu,Arial,"メイリオ",sans-serif;line-height:1.75}
+  .container{max-width:1080px;margin:0 auto;padding:28px 20px 80px}
+  h1{font-size:28px;margin:0 0 8px;color:#1e3a8a;text-align:center}
+  .lead{color:var(--muted);text-align:center;margin:0 0 26px}
+  .note-red{color:#d90429;font-weight:700}
+
+  /* セクション */
+  section.card{background:var(--card);border-radius:14px;box-shadow:0 8px 28px rgba(2,6,23,.06);padding:20px 22px;margin:16px 0}
+  h2.step{
+    color:var(--accent);
+    border-left:6px solid var(--accent);
+    padding-left:10px;margin:10px 0 14px;font-size:20px;font-weight:800
+  }
+  p,li{font-size:15px}
+  img{max-width:100%;border-radius:10px;box-shadow:0 6px 18px rgba(2,6,23,.08);margin:10px 0}
+
+  /* 目次（概要の下に常時表示） */
+  #tocBlock{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px}
+  #tocBlock h3{margin:0 0 8px;color:#0f172a;font-size:16px}
+  #tocBlock ul{margin:0;padding-left:18px;columns:2;column-gap:28px}
+  #tocBlock li{margin:4px 0;break-inside:avoid}
+  #tocBlock a{color:var(--accent);text-decoration:none}
+  #tocBlock a:hover{text-decoration:underline}
+
+  /* ハンバーガー & サイドメニュー（閉じてる時は完全にメニュー非表示） */
+  #hamburger{
+    position:fixed;top:14px;right:14px;z-index:1001;
+    width:46px;height:46px;border-radius:10px;border:none;cursor:pointer;
+    background:var(--accent);color:#fff;font-size:20px;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 6px 16px rgba(37,99,235,.35)
+  }
+  #hamburger:hover{background:var(--accent-dark)}
+  #sideMenu{
+    position:fixed;top:0;right:-320px;z-index:1000;height:100vh;width:320px;
+    background:#fff;border-left:1px solid #e2e8f0;box-shadow:-16px 0 40px rgba(2,6,23,.12);
+    padding:18px 18px 24px;overflow:auto;transition:right .28s ease
+  }
+  #sideMenu.open{right:0}
+  #sideMenu h3{margin:6px 0 8px;font-size:16px;color:#0f172a}
+  #sideMenu ul{margin:0;padding-left:18px}
+  #sideMenu li{margin:6px 0}
+  #sideMenu a{color:var(--accent);text-decoration:none}
+  #sideMenu a:hover{text-decoration:underline}
+  #closeMenu{
+    position:sticky;top:0;float:right;margin:-4px -4px 8px 0;border:none;background:#e2e8f0;color:#0f172a;border-radius:8px;padding:6px 10px;cursor:pointer
+  }
+
+  /* アンカー余白（ヘッダー被り対策） */
+  .anchor{scroll-margin-top:80px}
+
+  /* 小さな画面向け */
+  @media (max-width:760px){
+    #tocBlock ul{columns:1}
+  }
+</style>
 </head>
 <body>
-
-<header>リンクスメイト申し込みマニュアル</header>
-
-<button class="menu-btn" onclick="toggleMenu()">☰</button>
-
-<nav id="sideMenu">
+<button id="hamburger" aria-label="メニューを開く">☰</button>
+<nav id="sideMenu" aria-label="サイド目次" aria-hidden="true">
+  <button id="closeMenu">閉じる ×</button>
   <h3>目次</h3>
-  <a href="#overview">概要</a>
-  <a href="#step1">Step 1：リンクスメイトの公式サイトにアクセス</a>
-  <a href="#step2">Step 2：内容を選択し、次へ進む</a>
-  <a href="#step3">Step 3：メールアドレス・パスワード入力と本人確認</a>
-  <a href="#step4">Step 4：個人情報・クレジットカード入力</a>
-  <a href="#step5">Step 5：入力内容の確認・申し込み完了</a>
-  <a href="#step6">Step 6：マイページにログイン</a>
-  <a href="#step7">Step 7：重要なお知らせからカード認証</a>
-  <a href="#step8">Step 8：EID提出に進む</a>
-  <a href="#step9">Step 9：EIDを入力して登録完了</a>
-  <a href="#step10">Step 10：eSIM設定通知から通信プランのインストール</a>
-  <a href="#step11">Step 11：eSIMのアクティベートを完了</a>
-  <a href="#step12">Step 12：プロファイルをダウンロードしてインストール</a>
-  <a href="#step13">Step 13：eSIMの名称を変更</a>
-  <a href="#step14">Step 14：親②（データ専用SIM）を申し込み</a>
-  <a href="#step15">Step 15：音声SIMの申し込み</a>
-  <a href="#step16">Step 16：本人確認と申し込み完了</a>
-  <a href="#step17">Step 17：モッピー・ポケセンのアカウント作成後の処理</a>
+  <ul id="tocSide"></ul>
 </nav>
 
-<section id="overview">
-  <h2>概要</h2>
-  <h3>必要なもの</h3>
-  <ul>
-    <li>自身のスマートフォン（本人確認に使用）</li>
-    <p class="red">※リンクスメイトの申し込みの作業はPCで行ってください。</p>
-    <li>本人確認書類いずれか1点</li>
+<div class="container">
+  <h1>リンクスメイト申し込みマニュアル</h1>
+  <p class="lead">eSIMの開通〜音声SIMの追加までを画面付きで解説します。</p>
+
+  <!-- 概要 -->
+  <section class="card" id="overview">
+    <h2 class="step">概要・必要なもの</h2>
     <ul>
-      <li>運転免許証（更新時に設定した2種類の暗証番号が必要）</li>
-      <li>マイナンバーカード</li>
+      <li>PC（申込操作用） <span class="note-red">※リンクスメイトの申し込みの作業はPCで行ってください</span></li>
+      <li>スマートフォン（eSIMを入れる端末）</li>
+      <li>クレジットカード（3Dセキュア対応）</li>
+      <li>本人確認書類（マイナンバーカード 等）</li>
     </ul>
-  </ul>
 
-  <h3>手順概要</h3>
-  <ol>
-    <li>新規でデータ専用SIMを申し込む（親①）</li>
-    <li>開通後、同じ手順でデータ専用SIMをもう1回線申し込む（親②）</li>
-    <li>グループ①に音声SIMを追加（子①）</li>
-    <li>グループ②に音声SIMを追加（子②）</li>
-    <li>モッピー・ポケセンアカウントを作成後、子①・子②を解約</li>
-    <li>同手順でグループごとに繰り返す</li>
-  </ol>
-</section>
+    <!-- 常時表示の目次 -->
+    <div id="tocBlock" class="card">
+      <h3>目次</h3>
+      <ul id="tocInline"></ul>
+    </div>
+  </section>
 
-<!-- 各ステップ -->
+  <!-- ↓↓↓ ここから各ステップ（見出し h2 が自動的に目次へ入ります） ↓↓↓ -->
 
-  <section id="step1"><h2>Step 1：リンクスメイトの公式サイトにアクセス</h2><p>リンクスメイトのHP（<a href="https://linksmate.jp/" target="_blank">https://linksmate.jp/</a>）にアクセスし、申し込みに進む。</p></section>
-  <section id="step2"><h2>Step 2：内容を選択し、次へ進む</h2><p>画像のように内容を選択し、次へ進む。</p></section>
-  <section id="step3"><h2>Step 3：メールアドレス・パスワード入力と本人確認</h2><p>メールアドレス、パスワードの入力と本人確認を行う。</p></section>
-  <section id="step4"><h2>Step 4：個人情報・クレジットカード入力</h2><p>個人情報、クレジットカード情報を入力する。<br><span class="red">※クレジットカード確認には時間がかかる場合あり。</span></p></section>
-  <section id="step5"><h2>Step 5：入力内容の確認・申し込み完了</h2><p>入力内容に間違いがないか確認し、申し込みを完了させる。</p></section>
-  <section id="step6"><h2>Step 6：マイページにログイン</h2><p>TOPページから、マイページにログインする。<br>※登録したメールアドレス宛に認証が飛ぶ。</p></section>
-  <section id="step7"><h2>Step 7：重要なお知らせからカード認証</h2><p>「重要なお知らせ」にある「申し込み完了」ボタンをクリックし、クレジットカードの認証を行う。</p></section>
-  <section id="step8"><h2>Step 8：EID提出に進む</h2><p>重要なお知らせから「EIDの提出」に進む。</p></section>
-  <section id="step9"><h2>Step 9：EIDを入力して登録完了</h2><p>EIDを入力し、登録を完了させる。</p></section>
-  <section id="step10"><h2>Step 10：eSIM設定通知から通信プランのインストール</h2><p class="red">Wi-Fiに繋いでから作業する。</p><p>入力したEIDの端末に通知が届くので、モバイル通信プランのインストールを進める。</p></section>
-  <section id="step11"><h2>Step 11：eSIMのアクティベートを完了</h2><p>eSIMのアクティベートを完了させる。</p></section>
-  <section id="step12"><h2>Step 12：プロファイルをダウンロードしてインストール</h2><p>リンクスメイトのプロファイルをダウンロードし、インストールする。<br><span class="red">※インストール完了後、Wi-Fiをオフにする。</span></p></section>
-  <section id="step13"><h2>Step 13：eSIMの名称を変更</h2><p>eSIMの名称を変更する。</p></section>
-  <section id="step14"><h2>Step 14：親②（データ専用SIM）を申し込み</h2><p>ステップ1〜13の手順をもう一度繰り返し、親②を申し込み開通させる。</p><p>申し込み後、マイページ右上からグループ2に変更してEID登録に進む。</p></section>
-  <section id="step15"><h2>Step 15：音声SIMの申し込み</h2><p>グループ1とグループ2に音声SIMを追加していく。</p></section>
-  <section id="step16"><h2>Step 16：本人確認と申し込み完了</h2><p>本人確認を再度行い、申し込みを完了させる。</p></section>
-  <section id="step17"><h2>Step 17：モッピー・ポケセンのアカウント作成後の処理</h2><p>モッピー・ポケセンでアカウントを作成後、使用済みの回線を削除する。<br><span class="red">※親のデータ専用回線は絶対に削除しない。</span></p><p>削除後、iPhoneの設定 → モバイル通信で削除したeSIMも削除。</p></section>
-  
+  <section class="card anchor" id="step1">
+    <h2 class="step">Step 1：リンクスメイトの公式サイトにアクセス</h2>
+    <p>リンクスメイトのHP（<a href="https://linksmate.jp/" target="_blank" rel="noopener">https://linksmate.jp/</a>）にアクセスし、申し込みに進む。</p>
+    <img src="images/CleanShot 2025-10-15 at 13.07.03.png" alt="Step1 画面">
+  </section>
 
-<footer style="text-align:center;color:#888;font-size:.9em;padding:40px 0;">
-  © 2025 リンクスメイト申し込みマニュアル | 作成者：okz-ame
-</footer>
+  <section class="card anchor" id="step2">
+    <h2 class="step">Step 2：内容を選択し、次へ進む</h2>
+    <p>表示された画面で、以下のように内容を選択し「次へ進む」をクリックする。</p>
+    <img src="images/CleanShot 2025-10-15 at 13.08.38.png" alt="Step2 画面">
+  </section>
 
-<div class="back-to-top" onclick="scrollToTop()">↑</div>
+  <section class="card anchor" id="step3">
+    <h2 class="step">Step 3：メールアドレス・パスワードの入力と本人確認</h2>
+    <p>メールアドレス、パスワードの入力と本人確認を行う。</p>
+    <img src="images/CleanShot 2025-10-15 at 13.19.10.png" alt="Step3 画面">
+  </section>
+
+  <section class="card anchor" id="step4">
+    <h2 class="step">Step 4：個人情報・クレジットカード入力</h2>
+    <p>個人情報、クレジットカード情報を入力する。</p>
+    <p class="note-red">※クレジットカード確認は時間がかかる場合あり</p>
+    <img src="images/CleanShot 2025-10-15 at 13.53.30.png" alt="Step4-1 画面">
+    <img src="images/CleanShot 2025-10-15 at 14.08.12.png" alt="Step4-2 画面">
+  </section>
+
+  <section class="card anchor" id="step5">
+    <h2 class="step">Step 5：入力内容の確認・申し込み完了</h2>
+    <p>入力内容に間違いがないか確認し、申し込みを完了させる。</p>
+    <img src="images/CleanShot 2025-10-15 at 14.13.53.png" alt="Step5-1 画面">
+    <img src="images/CleanShot 2025-10-15 at 14.16.40.png" alt="Step5-2 画面">
+    <img src="images/CleanShot 2025-10-15 at 14.19.15.png" alt="Step5-3 画面">
+  </section>
+
+  <!-- 以降 Step 6〜17 も同じ要領で追加してOK（h2のテキストがそのまま目次に入ります） -->
+
+  <footer style="text-align:center;color:#94a3b8;margin-top:40px;">© LinksMate Manual</footer>
+</div>
 
 <script>
-function toggleMenu(){
-  document.getElementById("sideMenu").classList.toggle("active");
-}
-function scrollToTop(){
-  window.scrollTo({top:0,behavior:'smooth'});
-}
+  // 見出し(h2.step)から目次を自動生成（概要下の常時表示 & サイドメニュー用）
+  function buildTOC(){
+    const headings = Array.from(document.querySelectorAll('h2.step'));
+    const tocInline = document.getElementById('tocInline');
+    const tocSide = document.getElementById('tocSide');
+
+    tocInline.innerHTML = '';
+    tocSide.innerHTML = '';
+
+    headings.forEach(h => {
+      // セクションIDを取得（h2の親sectionのidを使う）
+      const sec = h.closest('section');
+      if(!sec || !sec.id) return;
+
+      const title = h.textContent.trim();
+      const li1 = document.createElement('li');
+      const a1 = document.createElement('a');
+      a1.href = '#' + sec.id;
+      a1.textContent = title;
+      li1.appendChild(a1);
+      tocInline.appendChild(li1);
+
+      const li2 = li1.cloneNode(true);
+      tocSide.appendChild(li2);
+    });
+  }
+
+  // サイドメニュー開閉（閉じている時は完全に非表示：ハンバーガー以外見えない）
+  const hamburger = document.getElementById('hamburger');
+  const sideMenu = document.getElementById('sideMenu');
+  const closeBtn = document.getElementById('closeMenu');
+
+  hamburger.addEventListener('click', () => {
+    sideMenu.classList.add('open');
+    sideMenu.setAttribute('aria-hidden','false');
+  });
+  closeBtn.addEventListener('click', () => {
+    sideMenu.classList.remove('open');
+    sideMenu.setAttribute('aria-hidden','true');
+  });
+
+  // ページ読み込み時に目次構築
+  document.addEventListener('DOMContentLoaded', buildTOC);
 </script>
 </body>
 </html>
