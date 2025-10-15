@@ -73,7 +73,12 @@
     width:100%;height:auto;border-radius:12px;border:1px solid #e5e9f2;background:#fff;display:block;
   }
   /* S__で始まる画像は50%表示（PC時）。スマホは100%へ切替 */
-  .shot img[src*="S__"]{width:50%}
+  .shot img[src*="S__"]{
+  width:50%;
+  display:block;
+  margin:0 auto; /* ← これで中央揃え */
+}
+
   .arrow-down{
     align-self:center;
     font-size:32px;line-height:1;color:#0ea5e9;
